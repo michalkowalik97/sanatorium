@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 
 
 public interface UserRepo extends JpaRepository<User,Integer> {
-    @Query("from User where login = :login")
-    User findUserByTheBestParameter(@Param("login") String login);
+
+    User findUserByLogin(String login);
+
 }

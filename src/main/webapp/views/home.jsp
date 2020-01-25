@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>Sanatorium - Panel</title>
 
     <%-- <link rel="stylesheet" href="w3.css">
  --%><%--
@@ -22,17 +22,17 @@
     </style>
 </head>
 <body>
-<div class="">
-    <div class="row bg-dark">
-        <div class="col-md-1 text-light"><h3>sanatorium</h3></div>
-        <div class="col-10"></div>
-        <div class="col-1  float-right"><a href="/logout" class="text-md-right text-info">Wyloguj</a></div>
-    </div>
 
+    <div class="row bg-dark pt-2 pb-2">
+        <div class="col-md-1 text-light "><h3>Sanatorium</h3></div>
+        <div class="col-10"></div>
+        <div class="col-1 h4 float-right"><a href="/logout" class="text-md-right text-info">Wyloguj</a></div>
+    </div>
+    <div class="container">
     <div class="container">
         <div class="row">
-            <div class="col alert-success">
-                <h1>zalogowano  ${sessionScope.user} </h1>
+            <div class="col text-success">
+                <h1>${message}</h1>
             </div>
         </div>
     </div>

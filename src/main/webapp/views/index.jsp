@@ -12,13 +12,13 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
     <style>
-        body {
+       /* body {
             background-image: url("graphics/background.jpg");
             background-repeat: no-repeat;
             background-size: cover;
 
         }
-
+*/
     </style>
 </head>
 <body>
@@ -32,6 +32,9 @@
             <li class="nav-item active">
                 <a class="nav-link" href="/login">Logowanie <%--<span class="sr-only">(current)</span>--%></a>
             </li>
+
+
+
            <%-- <li class="nav-item">
                 <a class="nav-link" href="#">Features</a>
             </li>
@@ -52,7 +55,7 @@
     </div>
 
 </nav>
-
+${sessionScope.user}
 
 </body>
 </html>

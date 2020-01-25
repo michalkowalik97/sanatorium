@@ -23,9 +23,20 @@
 </head>
 <body>
 <div class="container">
-    <div class="row align-items-center align-self-center justify-content-center pt-5">
+
+
+
+        <div class="row ">
+            <div class="col text-danger align-content-center text-center h3" role="alert">
+                    ${error}
+            </div>
+
+        </div>
+
+
+   <div class="row align-items-center align-self-center justify-content-center pt-5">
         <div class="col-md-auto card">
-          <%--  <img class="card-img-top" src="..." alt="Card image cap">--%>
+            <%--  <img class="card-img-top" src="..." alt="Card image cap">--%>
             <div class="card-img-top align-items-center align-self-center justify-content-center">
                 <i class='fas fa-user-circle' style='font-size:100px;color: #ffc107'></i>
             </div>
