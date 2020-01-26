@@ -24,6 +24,7 @@ public class PermissionResolwer {
 
         User user = repo.findUserByLogin(login);
 
+        System.out.println("helper user : " + user.toString());
         if (user != null) {
             if (user.getPermId() == 1) {
                 return "adminPanel";

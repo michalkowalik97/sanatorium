@@ -20,6 +20,7 @@ public class LoginController {
 
     @Autowired
     PermissionResolwer p;
+
     /**
      * Metoda zwracająca stronę logowania
      *
@@ -49,7 +50,7 @@ public class LoginController {
 
         User user = repo.findUserByLogin(login);
 
-
+        System.out.println(user.toString());
         if (user != null) {
             if (password.equals(user.getPassword())) {
                 req.getSession().setAttribute("user", login);
@@ -75,6 +76,7 @@ public class LoginController {
 
     /**
      * Metoda służąca do wylogowania użytkownika
+     *
      * @param req - request
      * @return - Strona startowa
      */

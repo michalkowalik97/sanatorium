@@ -1,13 +1,17 @@
 package com.sanatorium.sanatorium.models;
 
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+
+import javax.persistence.*;
 
 @Entity
+@Table(name = "PERMISSIONS")
+@EnableAutoConfiguration
 public class Permission {
 
     @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private int id;
     private String name;
     private int level;

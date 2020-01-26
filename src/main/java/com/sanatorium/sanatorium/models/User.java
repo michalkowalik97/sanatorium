@@ -1,20 +1,26 @@
 package com.sanatorium.sanatorium.models;
 
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "USERS")
+@EnableAutoConfiguration
 public class User {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String login;
     private String password;
     private String name;
     private String surname;
     private int permId;
+
+    public User() {
+    }
 
     public int getId() {
         return id;
