@@ -16,10 +16,21 @@
     </style>
 </head>
 <body>
-<nav class="row bg-dark pt-2 pb-2">
+<nav class=" navbar-dark bg-dark pt-2 pb-2 navbar navbar-expand-lg ">
     <div class="col-md-1 text-light "><a href="/" class="h3 text-white">Sanatorium</a></div>
     <div class="col-10"></div>
-    <div class="col-1 h4 float-right"><a href="/logout" class="text-md-right text-info">Wyloguj</a></div>
+
+    <div class="dropdown float-right">
+        <button type="button" class="btn btn-outline-light dropdown-toggle" data-toggle="dropdown">
+            ${sessionScope.user}
+        </button>
+        <div class="dropdown-menu">
+            <%--<a class="dropdown-item" href="#">Link 1</a>
+            <a class="dropdown-item" href="#">Link 2</a>--%>
+            <a class="dropdown-item" href="/logout">Wyloguj</a>
+        </div>
+    </div>
+
 </nav>
 
 <div class="container">
@@ -41,6 +52,7 @@
                 </div>
                 <div class="card-body">
 
+                    <a href="/showUsers" class="btn btn-info">Wyświetl wszystkich</a>
                     <a href="/addUser" class="btn btn-info">Dodaj</a>
                     <a href="/deleteUser" class="btn btn-info">Usuń</a>
                 </div>
@@ -52,6 +64,7 @@
                     <i class="fas fa-user-md"></i> Zarządzaj lekarzami
                 </div>
                 <div class="card-body">
+                    <a href="/showDoctors" class="btn btn-info">Wyświetl wszystkich</a>
                     <a href="/addDoctor" class="btn btn-info">Dodaj</a>
                     <a href="/deleteDoctor" class="btn btn-info">Usuń</a>
                 </div>
@@ -66,7 +79,7 @@
                     <i class="fas fa-hotel"></i> Zarządzaj pokojami
                 </div>
                 <div class="card-body">
-
+                    <a href="/showRooms" class="btn btn-info">Wyświetl wszystkie</a>
                     <a href="/addRoom" class="btn btn-info">Dodaj</a>
                     <a href="/deleteRoom" class="btn btn-info">Usuń</a>
                 </div>
@@ -78,8 +91,36 @@
                     <i class="fas fa-briefcase-medical"></i> Zarządzaj wizytami
                 </div>
                 <div class="card-body">
+                    <a href="/showAppointments" class="btn btn-info">Wyświetl wszystkie</a>
                     <a href="/addAppointment" class="btn btn-info">Dodaj</a>
                     <a href="/deleteAppointment" class="btn btn-info">Usuń</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row p-1 align-items-center">
+        <div class="col-md-6">
+            <div class="card border-info">
+                <div class="card-header bg-transparent border-info h3">
+                    <i class="fas fa-biohazard"></i>   Zarządzaj pacjentami
+                </div>
+                <div class="card-body">
+                    <a href="/showPatients" class="btn btn-info">Wyświetl wszystkich</a>
+                    <a href="/addPatient" class="btn btn-info">Dodaj</a>
+                    <a href="/deletePatient" class="btn btn-info">Usuń</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card border-info">
+                <div class="card-header bg-transparent border-info h3">
+                    <i class="fas fa-heartbeat"></i> Zarządzaj rehabilitacjami
+                </div>
+                <div class="card-body">
+                    <a href="/showRehabilitations" class="btn btn-info">Wyświetl wszystkie</a>
+                    <a href="/addRehabilitation" class="btn btn-info">Dodaj</a>
+                    <a href="/deleteRehabilitation" class="btn btn-info">Usuń</a>
                 </div>
             </div>
         </div>
