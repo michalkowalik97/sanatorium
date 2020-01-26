@@ -50,7 +50,7 @@ public class LoginController {
 
         User user = repo.findUserByLogin(login);
 
-        System.out.println(user.toString());
+
         if (user != null) {
             if (password.equals(user.getPassword())) {
                 req.getSession().setAttribute("user", login);
