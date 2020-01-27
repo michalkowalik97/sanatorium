@@ -54,7 +54,7 @@ public class LoginController {
         if (user != null) {
             if (password.equals(user.getPassword())) {
                 req.getSession().setAttribute("user", login);
-                req.getSession().setAttribute("perms", user.getPermId());
+              //  req.getSession().setAttribute("perms", user.getPermId());
 
                 mav.setViewName(p.selectHome(login));
                 mav.addObject("message", "Witaj " + user.getName());
@@ -85,5 +85,6 @@ public class LoginController {
         req.getSession().setAttribute("user", "");
         return "index";
     }
+
 
 }

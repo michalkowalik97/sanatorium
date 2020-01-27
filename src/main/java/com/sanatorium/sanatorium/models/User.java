@@ -17,7 +17,10 @@ public class User {
     private String password;
     private String name;
     private String surname;
-    private int permId;
+
+    @OneToOne
+/*    @JoinColumn(name = "permission_id",referencedColumnName = "id")*/
+    private Permission permission;
 
     public User() {
     }
@@ -61,7 +64,7 @@ public class User {
     public void setSurname(String surname) {
         this.surname = surname;
     }
-
+/*
     public int getPermId() {
         return permId;
     }
@@ -79,6 +82,26 @@ public class User {
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", permId=" + permId +
+                '}';
+    }*/
+
+    public Permission getPermission() {
+        return permission;
+    }
+
+    public void setPermission(Permission permission) {
+        this.permission = permission;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", permission=" + permission.getName() +
                 '}';
     }
 }

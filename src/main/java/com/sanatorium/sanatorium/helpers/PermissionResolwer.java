@@ -23,11 +23,13 @@ public class PermissionResolwer {
     public String selectHome(String login) {
 
         User user = repo.findUserByLogin(login);
+
         if (user != null) {
-            if (user.getPermId() == 1) {
+            System.out.println(user.toString());
+            if (user.getPermission().getId() == 1) {
                 return "adminPanel";
 
-            } else if (user.getPermId() == 2) {
+            } else if (user.getPermission().getId() == 2) {
                 return "home";
 
             }

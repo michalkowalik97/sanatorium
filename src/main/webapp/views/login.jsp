@@ -46,7 +46,7 @@
                 <div class="form-group">
                     <label>
                         Login
-                        <input type="text" name="login" class="form-control">
+                        <input type="text" name="login" class="form-control" autofocus required>
                     </label>
                 </div>
                 <div class="form-group">

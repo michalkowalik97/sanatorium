@@ -1,4 +1,4 @@
-<%@ page language="java" pageEncoding="UTF-8" %>
+﻿<%@ page language="java" pageEncoding="UTF-8" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="pl">
@@ -22,21 +22,21 @@
 
     <div class="dropdown float-right">
         <button type="button" class="btn btn-outline-light dropdown-toggle" data-toggle="dropdown">
-            Opcje
+            ${sessionScope.user}
         </button>
         <div class="dropdown-menu">
             <%--<a class="dropdown-item" href="#">Link 1</a>
             <a class="dropdown-item" href="#">Link 2</a>--%>
-            <a class="dropdown-item" href="/login">Zaloguj</a>
+            <a class="dropdown-item" href="/logout">Wyloguj</a>
         </div>
     </div>
 
 </nav>
 
-<div class="container  pt-3 mt-5">
+<div class="container border border-info pt-3 mt-5">
 
 
-   <%-- <div class="row p-1 align-items-center">
+    <div class="row p-1 align-items-center">
         <div class="col-md-4   align-items-center ">
 
             <form action="" method="post">
@@ -56,7 +56,7 @@
             </form>
         </div>
 
-    </div>--%>
+    </div>
 
 </div>
 </body>
