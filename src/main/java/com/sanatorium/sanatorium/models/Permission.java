@@ -13,7 +13,7 @@ public class Permission {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name = "id")
-    private int id;
+    private Integer id;
     private String name;
     private int level;
 /*

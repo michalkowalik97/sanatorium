@@ -2,6 +2,7 @@ package com.sanatorium.sanatorium.models;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 
@@ -10,9 +11,13 @@ import javax.persistence.*;
 @EnableAutoConfiguration
 public class User {
 
+
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "id")
+    private Long id;
+    @Column(unique = true)
     private String login;
     private String password;
     private String name;
@@ -24,14 +29,22 @@ public class User {
 
     public User() {
     }
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+/*
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
-    }
+    }*/
 
     public String getLogin() {
         return login;
