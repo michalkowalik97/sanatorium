@@ -4,19 +4,19 @@ import com.sanatorium.sanatorium.models.Permission;
 import com.sanatorium.sanatorium.models.User;
 import com.sanatorium.sanatorium.repo.PermissionRepo;
 import com.sanatorium.sanatorium.repo.UserRepo;
-import org.omg.Messaging.SYNC_WITH_TRANSPORT;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.persistence.Id;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-import java.util.Optional;
 
+@Transactional
 @Controller
 public class UserController {
 
@@ -83,10 +83,62 @@ public class UserController {
             break;
         }
 
-        // mav.setViewName("users/viewAll");
-       // mav.addObject("message", "Użytkownik dodany pomyślnie");
+        return new ModelAndView("redirect:/showUsers", "message", "Użytkownik dodany pomyślnie");
+    }
 
-        return new ModelAndView("redirect:/showUsers","message", "Użytkownik dodany pomyślnie");
-        //return new ModelAndView();
+    @RequestMapping("/deleteUser/{id}")
+    public ModelAndView deleteUser(@PathVariable("id") Long id) {
+
+
+        System.out.println("id = " + id);
+        try {
+            repo.removeUserById(id);
+        } catch (Exception e) {
+            return new ModelAndView("redirect:/showUsers", "error", "Błąd podczas usuwania");
+
+        }
+
+        return new ModelAndView("redirect:/showUsers", "message", "Użytkownik usunięty pomyślnie");
+
+    }
+
+
+    @RequestMapping("/editUser/{id}")
+    public ModelAndView getUserEditForm(@PathVariable("id") Long id) {
+
+        User user = repo.findUserById(id);
+
+        if (user != null) {
+            ModelAndView mav = new ModelAndView();
+            mav.setViewName("users/editUser");
+            mav.addObject("user", user);
+            List<Permission> permissions = permRepo.findAll();
+            mav.addObject("permissions", permissions);
+            return mav;
+        }
+
+        return new ModelAndView("redirect:/showUsers", "error", "Wystąpił błąd");
+
+    }
+
+    @RequestMapping("/updateUser/{id}")
+    public ModelAndView updateUser(@PathVariable("id") Long id, HttpServletRequest req) {
+
+        try {
+            User user = repo.findUserById(id);
+
+            if (user != null) {
+                user.setName(req.getParameter("name"));
+                user.setSurname(req.getParameter("surname"));
+                user.setPermission(permRepo.findPermissionById(Integer.parseInt(req.getParameter("role"))));
+                repo.save(user);
+
+                return new ModelAndView("redirect:/showUsers", "message", "Dane zaktualizowane pomyślnie");
+            }
+        } catch (Exception e) {
+            return new ModelAndView("redirect:/showUsers", "error", "Wystąpił błąd podczas aktualizacji danych");
+        }
+
+        return new ModelAndView("redirect:/showUsers", "error", "Wystąpił błąd podczas aktualizacji danych");
     }
 }

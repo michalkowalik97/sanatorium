@@ -9,3 +9,5 @@ INSERT INTO Users (id, login, password, name, surname, permission_id) VALUES (6,
 
 INSERT INTO permissions (id, level, name) VALUES (1,1, 'admin')
 INSERT INTO permissions (id, level, name) VALUES (2,2, 'receptionist')
+INSERT INTO permissions (id, level, name) VALUES (3,3, 'doctor')
+INSERT INTO permissions (id, level, name) VALUES (4,4, 'physiotherapist')

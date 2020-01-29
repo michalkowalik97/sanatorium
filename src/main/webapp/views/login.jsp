@@ -58,8 +58,8 @@
 
                 <div class="form-group">
                     <input type="Submit" value="Zaloguj" class="btn btn-success">
-                    <input type="reset" value="Resetuj" class="btn btn-danger">
-                    <a href="/" class="btn btn-secondary"> Powrót</a>
+                    <input type="reset" value="Resetuj" class="btn btn-light">
+                    <a href="/" class="btn btn-light"> Powrót</a>
                 </div>
             </form>
         </div>

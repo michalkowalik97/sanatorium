@@ -35,7 +35,6 @@
 </nav>
 
 
-
 <div class="container border border-info pt-3 mt-5 table-responsive">
 
 
@@ -47,6 +46,11 @@
     </div>
     <div class="row p-3">
         <div class="col text-info">
+            <h2>
+
+                <%= (request.getParameter("message") == null) ? "" : request.getParameter("message") %>
+
+            </h2>
             <h2>
                 ${message}
             </h2>
@@ -60,32 +64,34 @@
         <a href="/addUser" class="btn-info btn float-right"> + Dodaj użytkownika</a>
     </div>
 
-            <table class="table table-hover table-bordered">
-                <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Imię</th>
-                    <th>Nazwisko</th>
-                    <th>Login</th>
-                    <th>Rola</th>
-                    <th>Akcje</th>
-                </tr>
-                </thead>
-                <c:forEach items="${users}" var="user">
-                    <tr>
-                        <td><c:out value="${user.id}"/></td>
-                        <td><c:out value="${user.name}"/></td>
-                        <td><c:out value="${user.surname}"/></td>
-                        <td><c:out value="${user.login}"/></td>
-                        <td><c:out value="${user.permission.getName()}"/></td>
-                        <td>
-                            <a href="/editUser/<c:out value="${user.id}"/>" class="btn btn-info"> <i class="fa fa-wrench" aria-hidden="true"></i></a>
-                            <a href="/deleteUser/<c:out value="${user.id}"/>" class="btn btn-danger"> <i class="fa fa-trash" aria-hidden="true"></i></a>
+    <table class="table table-hover table-bordered">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Imię</th>
+            <th>Nazwisko</th>
+            <th>Login</th>
+            <th>Rola</th>
+            <th>Akcje</th>
+        </tr>
+        </thead>
+        <c:forEach items="${users}" var="user">
+            <tr>
+                <td><c:out value="${user.id}"/></td>
+                <td><c:out value="${user.name}"/></td>
+                <td><c:out value="${user.surname}"/></td>
+                <td><c:out value="${user.login}"/></td>
+                <td><c:out value="${user.permission.getName()}"/></td>
+                <td>
+                    <a href="/editUser/<c:out value="${user.id}"/>" class="btn btn-info"> <i class="fa fa-wrench"
+                                                                                             aria-hidden="true"></i></a>
+                    <a href="/deleteUser/<c:out value="${user.id}"/>" class="btn btn-danger"> <i class="fa fa-trash"
+                                                                                                 aria-hidden="true"></i></a>
 
-                        </td>
-                    </tr>
-                </c:forEach>
-            </table>
+                </td>
+            </tr>
+        </c:forEach>
+    </table>
 
 
 </div>
