@@ -1,4 +1,4 @@
-<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ page language="java" pageEncoding="UTF-8" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="pl">
@@ -12,6 +12,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>--%>
+
+    <link rel="stylesheet" href="/main.css">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -32,6 +34,7 @@
         <div class="dropdown-menu">
             <%--<a class="dropdown-item" href="#">Link 1</a>
             <a class="dropdown-item" href="#">Link 2</a>--%>
+            <a class="dropdown-item" href="/user/configuration/${sessionScope.user}">Ustawienia konta</a>
             <a class="dropdown-item" href="/logout">Wyloguj</a>
         </div>
     </div>
@@ -53,7 +56,7 @@
         <div class="col-md-6">
             <div class="card border-info">
                 <div class="card-header bg-transparent border-info h3">
-                    <i class="fas fa-biohazard"></i>   Zarządzaj pacjentami
+                    <i class="fas fa-biohazard"></i> Zarządzaj pacjentami
                 </div>
                 <div class="card-body">
                     <a href="/showPatients" class="btn btn-info">Wyświetl wszystkich</a>

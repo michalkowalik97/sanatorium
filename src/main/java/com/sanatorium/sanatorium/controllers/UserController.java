@@ -90,7 +90,7 @@ public class UserController {
     public ModelAndView deleteUser(@PathVariable("id") Long id) {
 
 
-        System.out.println("id = " + id);
+      //  System.out.println("id = " + id);
         try {
             repo.removeUserById(id);
         } catch (Exception e) {
@@ -141,4 +141,73 @@ public class UserController {
 
         return new ModelAndView("redirect:/showUsers", "error", "Wystąpił błąd podczas aktualizacji danych");
     }
+
+
+    @RequestMapping("/user/configuration/{login}")
+    public ModelAndView accountConfig(@PathVariable("login") String login, HttpServletRequest req) {
+        User user = repo.findUserByLogin(login);
+        ModelAndView mav = new ModelAndView();
+
+        if (user != null) {
+            mav.addObject(user);
+            mav.setViewName("users/config");
+            return mav;
+        }
+
+        mav.setViewName("/");
+        return mav;
+    }
+
+    @RequestMapping("/user/edit/password/{id}")
+    public ModelAndView changePasswordForm(@PathVariable("id") Long id, HttpServletRequest req) {
+        User user = repo.findUserById(id);
+        ModelAndView mav = new ModelAndView();
+
+        if (user != null) {
+            mav.addObject(user);
+            mav.setViewName("users/password");
+            return mav;
+        }
+
+        mav.setViewName("/");
+        return mav;
+    }
+
+
+    @PostMapping("/user/edit/password/{id}")
+    public ModelAndView changePassword(@PathVariable("id") Long id, HttpServletRequest req) {
+        User user = repo.findUserById(id);
+        ModelAndView mav = new ModelAndView();
+
+        String password = req.getParameter("current");
+        String newPassword = req.getParameter("new");
+        String confirm = req.getParameter("confirm");
+
+        if (user != null) {
+
+            if(password.equals(user.getPassword())){
+                if (newPassword.equals(confirm)){
+                    user.setPassword(newPassword);
+                    repo.save(user);
+
+                    mav.addObject(user);
+                    mav.addObject("message", "Hasło zostało zmienione.");
+                    mav.setViewName("users/config");
+                    return mav;
+                }else{
+                    String referer = req.getHeader("Referer");
+                    return new ModelAndView("redirect:"+referer, "error", "Podane hasła nie są zgodne!");
+                }
+            }
+
+            String referer = req.getHeader("Referer");
+            return new ModelAndView("redirect:"+referer, "error", "Stare hasło niepoprawne!");
+
+        }
+
+        mav.setViewName("/");
+        return mav;
+    }
+
+
 }

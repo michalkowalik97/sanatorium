@@ -1,11 +1,12 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>Sanatorium - użytkownicy</title>
+    <title>Sanatorium - ustawienia konta</title>
 
     <link rel="stylesheet" href="/main.css">
 
@@ -28,21 +29,20 @@
             ${sessionScope.user}
         </button>
         <div class="dropdown-menu">
-            <%--<a class="dropdown-item" href="#">Link 1</a>
-        <a class="dropdown-item" href="#">Link 2</a>--%>
+            <%--<a class="dropdown-item" href="#">Link 1</a>--%>
+            <a class="dropdown-item" href="/user/configuration/${sessionScope.user}">Ustawienia konta</a>
             <a class="dropdown-item" href="/logout">Wyloguj</a>
         </div>
     </div>
 
 </nav>
 
-
-<div class="container border border-info pt-3 mt-5 table-responsive">
-
+<div class="pt-3 m-5">
 
     <div class="row ">
         <div class="col text-danger align-content-center text-center h3" role="alert">
             ${error}
+            <%= (request.getParameter("error") == null) ? "" : request.getParameter("error") %>
         </div>
 
     </div>
@@ -52,6 +52,7 @@
 
                 <%= (request.getParameter("message") == null) ? "" : request.getParameter("message") %>
 
+
             </h2>
             <h2>
                 ${message}
@@ -60,41 +61,27 @@
         </div>
     </div>
 
-    <div class="p-3 ">
-        <span class="h2">Użytkownicy</span>
 
-        <a href="/addUser" class="btn-info btn float-right"> + Dodaj użytkownika</a>
+    <div class="row">
+        <div class="col-md-3  m-3 border-left border-info">
+            <i class="fas fa-user-circle h1 fa-10x m-3"></i>
+            <h3 class="my-2">${user.getName()} ${user.getSurname()}  </h3>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item list-group-item-action"><a href="/user/edit/password/${user.getId()}"
+                                                                      class="link100">Zmień hasło</a></li>
+                <li class="list-group-item list-group-item-action">Dapibus ac facilisis in</li>
+                <li class="list-group-item list-group-item-action">Morbi leo risus</li>
+                <li class="list-group-item list-group-item-action">Porta ac consectetur ac</li>
+                <li class="list-group-item list-group-item-action">Vestibulum at eros</li>
+            </ul>
+
+
+        </div>
+
+        <div class="col-md-8 <%--border-left border-info--%> ml-5">
+
+        </div>
     </div>
-
-    <table class="table table-hover table-bordered">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Imię</th>
-            <th>Nazwisko</th>
-            <th>Login</th>
-            <th>Rola</th>
-            <th>Akcje</th>
-        </tr>
-        </thead>
-        <c:forEach items="${users}" var="user">
-            <tr>
-                <td><c:out value="${user.id}"/></td>
-                <td><c:out value="${user.name}"/></td>
-                <td><c:out value="${user.surname}"/></td>
-                <td><c:out value="${user.login}"/></td>
-                <td><c:out value="${user.permission.getName()}"/></td>
-                <td>
-                    <a href="/editUser/<c:out value="${user.id}"/>" class="btn btn-info"> <i class="fa fa-wrench"
-                                                                                             aria-hidden="true"></i></a>
-                    <a href="/deleteUser/<c:out value="${user.id}"/>" class="btn btn-danger"> <i class="fa fa-trash"
-                                                                                                 aria-hidden="true"></i></a>
-
-                </td>
-            </tr>
-        </c:forEach>
-    </table>
-
 
 </div>
 </body>

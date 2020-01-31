@@ -6,6 +6,8 @@
     <meta charset="UTF-8">
     <title>Sanatorium - Panel Administratora</title>
 
+    <link rel="stylesheet" href="/main.css">
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -25,8 +27,8 @@
             ${sessionScope.user}
         </button>
         <div class="dropdown-menu">
-            <%--<a class="dropdown-item" href="#">Link 1</a>
-            <a class="dropdown-item" href="#">Link 2</a>--%>
+            <%--<a class="dropdown-item" href="#">Link 1</a>--%>
+            <a class="dropdown-item" href="/user/configuration/${sessionScope.user}">Ustawienia konta</a>
             <a class="dropdown-item" href="/logout">Wyloguj</a>
         </div>
     </div>
@@ -54,7 +56,7 @@
 
                     <a href="/showUsers" class="btn btn-info">Wyświetl wszystkich</a>
                     <a href="/addUser" class="btn btn-info">Dodaj</a>
-                    <a href="/deleteUser" class="btn btn-info">Usuń</a>
+                    <%--<a href="/deleteUser" class="btn btn-info">Usuń</a>--%>
                 </div>
             </div>
         </div>
@@ -66,7 +68,7 @@
                 <div class="card-body">
                     <a href="/showDoctors" class="btn btn-info">Wyświetl wszystkich</a>
                     <a href="/addDoctor" class="btn btn-info">Dodaj</a>
-                    <a href="/deleteDoctor" class="btn btn-info">Usuń</a>
+                    <%--<a href="/deleteDoctor" class="btn btn-info">Usuń</a>--%>
                 </div>
             </div>
         </div>
@@ -81,7 +83,7 @@
                 <div class="card-body">
                     <a href="/showRooms" class="btn btn-info">Wyświetl wszystkie</a>
                     <a href="/addRoom" class="btn btn-info">Dodaj</a>
-                    <a href="/deleteRoom" class="btn btn-info">Usuń</a>
+                    <%--<a href="/deleteRoom" class="btn btn-info">Usuń</a>--%>
                 </div>
             </div>
         </div>
@@ -93,7 +95,7 @@
                 <div class="card-body">
                     <a href="/showAppointments" class="btn btn-info">Wyświetl wszystkie</a>
                     <a href="/addAppointment" class="btn btn-info">Dodaj</a>
-                    <a href="/deleteAppointment" class="btn btn-info">Usuń</a>
+                    <%--<a href="/deleteAppointment" class="btn btn-info">Usuń</a>--%>
                 </div>
             </div>
         </div>
@@ -108,7 +110,7 @@
                 <div class="card-body">
                     <a href="/showPatients" class="btn btn-info">Wyświetl wszystkich</a>
                     <a href="/addPatient" class="btn btn-info">Dodaj</a>
-                    <a href="/deletePatient" class="btn btn-info">Usuń</a>
+                    <%--<a href="/deletePatient" class="btn btn-info">Usuń</a>--%>
                 </div>
             </div>
         </div>
@@ -120,7 +122,7 @@
                 <div class="card-body">
                     <a href="/showRehabilitations" class="btn btn-info">Wyświetl wszystkie</a>
                     <a href="/addRehabilitation" class="btn btn-info">Dodaj</a>
-                    <a href="/deleteRehabilitation" class="btn btn-info">Usuń</a>
+                    <%--<a href="/deleteRehabilitation" class="btn btn-info">Usuń</a>--%>
                 </div>
             </div>
         </div>
