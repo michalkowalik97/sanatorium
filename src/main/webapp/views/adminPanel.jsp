@@ -56,7 +56,7 @@
 
                     <a href="/showUsers" class="btn btn-info">Wyświetl wszystkich</a>
                     <a href="/addUser" class="btn btn-info">Dodaj</a>
-                    <%--<a href="/deleteUser" class="btn btn-info">Usuń</a>--%>
+
                 </div>
             </div>
         </div>
@@ -68,7 +68,6 @@
                 <div class="card-body">
                     <a href="/showDoctors" class="btn btn-info">Wyświetl wszystkich</a>
                     <a href="/addDoctor" class="btn btn-info">Dodaj</a>
-                    <%--<a href="/deleteDoctor" class="btn btn-info">Usuń</a>--%>
                 </div>
             </div>
         </div>
@@ -83,7 +82,7 @@
                 <div class="card-body">
                     <a href="/showRooms" class="btn btn-info">Wyświetl wszystkie</a>
                     <a href="/addRoom" class="btn btn-info">Dodaj</a>
-                    <%--<a href="/deleteRoom" class="btn btn-info">Usuń</a>--%>
+
                 </div>
             </div>
         </div>
@@ -95,7 +94,7 @@
                 <div class="card-body">
                     <a href="/showAppointments" class="btn btn-info">Wyświetl wszystkie</a>
                     <a href="/addAppointment" class="btn btn-info">Dodaj</a>
-                    <%--<a href="/deleteAppointment" class="btn btn-info">Usuń</a>--%>
+
                 </div>
             </div>
         </div>
@@ -110,7 +109,7 @@
                 <div class="card-body">
                     <a href="/showPatients" class="btn btn-info">Wyświetl wszystkich</a>
                     <a href="/addPatient" class="btn btn-info">Dodaj</a>
-                    <%--<a href="/deletePatient" class="btn btn-info">Usuń</a>--%>
+
                 </div>
             </div>
         </div>
@@ -122,10 +121,37 @@
                 <div class="card-body">
                     <a href="/showRehabilitations" class="btn btn-info">Wyświetl wszystkie</a>
                     <a href="/addRehabilitation" class="btn btn-info">Dodaj</a>
-                    <%--<a href="/deleteRehabilitation" class="btn btn-info">Usuń</a>--%>
+
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="row p-1 align-items-center">
+        <div class="col-md-6">
+            <div class="card border-info">
+                <div class="card-header bg-transparent border-info h3">
+                    <i class="fa fa-calendar" aria-hidden="true"></i> Zarządzaj pobytami
+                </div>
+                <div class="card-body">
+
+                    <a href="/showTurnuses" class="btn btn-info">Wyświetl wszystkie</a>
+                    <a href="/addTurnus" class="btn btn-info">Dodaj</a>
+                </div>
+            </div>
+        </div>
+
+        <%--  <div class="col-md-6">
+              <div class="card border-info">
+                  <div class="card-header bg-transparent border-info h3">
+                      <i class="fas fa-briefcase-medical"></i> Zarządzaj wizytami
+                  </div>
+                  <div class="card-body">
+                      <a href="/addAppointment" class="btn btn-info">Dodaj</a>
+                      <a href="/deleteAppointment" class="btn btn-info">Usuń</a>
+                  </div>
+              </div>
+          </div>--%>
     </div>
 
 

@@ -25,11 +25,11 @@ public class PermissionResolwer {
         User user = repo.findUserByLogin(login);
 
         if (user != null) {
-            System.out.println(user.toString());
-            if (user.getPermission().getId() == 1) {
+         //   System.out.println(user.toString());
+            if (user.getPermission().getLevel() == 1) {
                 return "adminPanel";
 
-            } else if (user.getPermission().getId() == 2) {
+            } else if (user.getPermission().getLevel() == 2) {
                 return "home";
 
             }

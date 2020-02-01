@@ -6,23 +6,22 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "PERMISSIONS")
+@Table(name ="MEDICAMENTS" )
 @EnableAutoConfiguration
-public class Permission {
+public class Medicament {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id")
-    private Integer id;
+    private Long id;
     private String name;
-    private int level;
+    private Double dose;
 
-
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -34,13 +33,11 @@ public class Permission {
         this.name = name;
     }
 
-    public int getLevel() {
-        return level;
+    public Double getDose() {
+        return dose;
     }
 
-    public void setLevel(int level) {
-        this.level = level;
+    public void setDose(Double dose) {
+        this.dose = dose;
     }
-
-
 }

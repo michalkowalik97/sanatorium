@@ -173,6 +173,23 @@ public class UserController {
         return mav;
     }
 
+    @RequestMapping("/resetPassword/{id}")
+    public ModelAndView resetPassword(@PathVariable("id") Long id, HttpServletRequest req) {
+        User user = repo.findUserById(id);
+        ModelAndView mav = new ModelAndView();
+
+        if (user != null) {
+            user.setPassword("zaq1@WSX");
+            repo.save(user);
+
+            return new ModelAndView("redirect:/showUsers", "message", "Hasło zresetowane pomyślnie");
+
+        }
+
+        mav.setViewName("/");
+        return mav;
+    }
+
 
     @PostMapping("/user/edit/password/{id}")
     public ModelAndView changePassword(@PathVariable("id") Long id, HttpServletRequest req) {

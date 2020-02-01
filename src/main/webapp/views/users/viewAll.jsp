@@ -85,10 +85,20 @@
                 <td><c:out value="${user.login}"/></td>
                 <td><c:out value="${user.permission.getName()}"/></td>
                 <td>
-                    <a href="/editUser/<c:out value="${user.id}"/>" class="btn btn-info"> <i class="fa fa-wrench"
-                                                                                             aria-hidden="true"></i></a>
-                    <a href="/deleteUser/<c:out value="${user.id}"/>" class="btn btn-danger"> <i class="fa fa-trash"
-                                                                                                 aria-hidden="true"></i></a>
+                    <a href="/editUser/<c:out value="${user.id}"/>" class="btn btn-info" data-toggle="tooltip"
+                       title="Edytuj użytkownika">
+                        <i class="fa fa-wrench" aria-hidden="true"></i>
+                    </a>
+
+                    <a href="/resetPassword/<c:out value="${user.id}"/>" class="btn btn-info" data-toggle="tooltip"
+                       title="Resetuj hasło"> <i
+                            class="fas fa-lock"></i>
+                    </a>
+
+                    <a href="/deleteUser/<c:out value="${user.id}"/>" class="btn btn-danger" data-toggle="tooltip"
+                       title="Usuń użytkownika">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                    </a>
 
                 </td>
             </tr>
