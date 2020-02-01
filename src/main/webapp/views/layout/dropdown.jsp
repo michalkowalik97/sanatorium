@@ -1,4 +1,6 @@
-    <nav class=" navbar-dark bg-dark pt-2 pb-2 navbar navbar-expand-lg ">
+    <%@ page language="java" pageEncoding="UTF-8" %>
+        <%@ page contentType="text/html;charset=UTF-8" %>
+        <nav class=" navbar-dark bg-dark pt-2 pb-2 navbar navbar-expand-lg ">
         <div class="col-md-1 text-light "><a href="/" class="h3 text-white">Sanatorium</a></div>
         <div class="col-10"></div>
 
