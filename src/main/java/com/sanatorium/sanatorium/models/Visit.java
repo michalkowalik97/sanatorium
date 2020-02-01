@@ -5,6 +5,8 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
@@ -19,11 +21,9 @@ public class Visit {
     @Column(name = "id")
     private Long id;
 
-    @Temporal(TemporalType.DATE)
-    private Date date;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dateTime;
 
-    @Temporal(TemporalType.TIME)
-    private Date time;
 
     @OneToOne
     private User patient;
@@ -31,11 +31,18 @@ public class Visit {
     @OneToOne
     private User doctor;
 
-
-    @OneToOne @Nullable
+    @OneToOne
+    @Nullable
     private Referral referral;
 
 
+    public Date getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(Date dateTime) {
+        this.dateTime = dateTime;
+    }
 
     public Long getId() {
         return id;
@@ -45,21 +52,6 @@ public class Visit {
         this.id = id;
     }
 
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public Date getTime() {
-        return time;
-    }
-
-    public void setTime(Date time) {
-        this.time = time;
-    }
 
     public User getPatient() {
         return patient;
@@ -85,5 +77,16 @@ public class Visit {
         this.referral = referral;
     }
 
+    public String getDateTimeInHtmlFormat() {
 
+        String date = dateTime.toString();
+        date = date.substring(0,10)+"T"+date.substring(11,16);
+        return date;
+    }
+
+    public String getDateTimeInUserFriendlyFormat(){
+        String date = dateTime.toString();
+        date = date.substring(0,10)+" Godz.: "+date.substring(11,16);
+        return date;
+    }
 }

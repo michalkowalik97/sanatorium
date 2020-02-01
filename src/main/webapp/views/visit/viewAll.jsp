@@ -48,39 +48,38 @@
     <div class="p-3 ">
         <span class="h2">Użytkownicy</span>
 
-        <a href="/addUser" class="btn-info btn float-right"> + Dodaj użytkownika</a>
+        <a href="/addVisit" class="btn-info btn float-right"> + Dodaj wizytę</a>
     </div>
 
     <table class="table table-hover table-bordered">
         <thead>
         <tr>
-            <th>ID</th>
-            <th>Imię</th>
-            <th>Nazwisko</th>
-            <th>Login</th>
-            <th>Rola</th>
+            <th>L.p.</th>
+            <th>Lekarz</th>
+            <th>Pacjent</th>
+            <th>Data i godzina</th>
+
             <th>Akcje</th>
         </tr>
         </thead>
-        <c:forEach items="${users}" var="user">
+        <%! int i =1; %>
+        <c:forEach items="${visits}" var="visit">
             <tr>
-                <td><c:out value="${user.id}"/></td>
-                <td><c:out value="${user.name}"/></td>
-                <td><c:out value="${user.surname}"/></td>
-                <td><c:out value="${user.login}"/></td>
-                <td><c:out value="${user.permission.getName()}"/></td>
+                <td> <% out.println(i); i=i+1; %></td>
+                <td><c:out value="${visit.getDoctor().getName()}"/>&nbsp;<c:out value="${visit.getDoctor().getSurname()}"/></td>
+                <td><c:out value="${visit.getPatient().getName()}"/>&nbsp;<c:out value="${visit.getPatient().getSurname()}"/></td>
+
+                <td><c:out value="${visit.getDateTimeInUserFriendlyFormat()}"/></td>
+
+
+
                 <td>
-                    <a href="/editUser/<c:out value="${user.id}"/>" class="btn btn-info" data-toggle="tooltip"
+                    <a href="/editVisit/<c:out value="${visit.id}"/>" class="btn btn-info" data-toggle="tooltip"
                        title="Edytuj użytkownika">
                         <i class="fa fa-wrench" aria-hidden="true"></i>
                     </a>
 
-                    <a href="/resetPassword/<c:out value="${user.id}"/>" class="btn btn-info" data-toggle="tooltip"
-                       title="Resetuj hasło"> <i
-                            class="fas fa-lock"></i>
-                    </a>
-
-                    <a href="/deleteUser/<c:out value="${user.id}"/>" class="btn btn-danger" data-toggle="tooltip"
+                    <a href="/deleteVisit/<c:out value="${visit.id}"/>" class="btn btn-danger" data-toggle="tooltip"
                        title="Usuń użytkownika">
                         <i class="fa fa-trash" aria-hidden="true"></i>
                     </a>

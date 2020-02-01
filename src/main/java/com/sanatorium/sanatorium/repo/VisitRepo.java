@@ -4,4 +4,8 @@ import com.sanatorium.sanatorium.models.Visit;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface VisitRepo extends JpaRepository<Visit,Integer> {
+
+    Visit findVisitById(Long id);
+
+    Long removeVisitById(Long id);
 }

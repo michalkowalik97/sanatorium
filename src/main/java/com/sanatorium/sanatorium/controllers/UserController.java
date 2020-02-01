@@ -48,8 +48,8 @@ public class UserController {
     public ModelAndView addUser(HttpServletRequest req) {
         ModelAndView mav = new ModelAndView();
 
-       // List<Permission> permissions = permRepo.findAll();
-        List<Permission> permissions = permRepo.findByLevelNot(5);
+        List<Permission> permissions = permRepo.findAll();
+        //List<Permission> permissions = permRepo.findByLevelNot(5);
         mav.setViewName("users/add");
         mav.addObject("permissions", permissions);
         return mav;
@@ -156,8 +156,8 @@ public class UserController {
             return mav;
         }
 
-        mav.setViewName("/");
-        return mav;
+        return new ModelAndView("redirect:/");
+
     }
 
     @RequestMapping("/user/edit/password/{id}")
@@ -171,8 +171,8 @@ public class UserController {
             return mav;
         }
 
-        mav.setViewName("/");
-        return mav;
+                return new ModelAndView("redirect:/");
+
     }
 
     @RequestMapping("/resetPassword/{id}")
@@ -188,8 +188,8 @@ public class UserController {
 
         }
 
-        mav.setViewName("/");
-        return mav;
+                return new ModelAndView("redirect:/");
+
     }
 
 
@@ -224,8 +224,8 @@ public class UserController {
 
         }
 
-        mav.setViewName("/");
-        return mav;
+                return new ModelAndView("redirect:/");
+
     }
 
 
