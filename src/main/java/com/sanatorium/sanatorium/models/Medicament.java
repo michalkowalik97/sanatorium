@@ -14,7 +14,9 @@ public class Medicament {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id")
     private Long id;
+
     private String name;
+
     private Double dose;
 
     public Long getId() {

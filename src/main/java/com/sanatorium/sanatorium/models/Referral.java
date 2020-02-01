@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Date;
 
 @Entity
 @Table(name = "REFERRAL")
@@ -18,19 +19,76 @@ public class Referral {
 
     private String service;
 
-    @Column(nullable = true )
+    @Column(nullable = true)
     private String decription;
 
     @Temporal(TemporalType.DATE)
-    private LocalDate date;
+    private Date date;
 
     @Temporal(TemporalType.TIME)
-    private LocalTime time;
+    private Date time;
 
     @OneToOne
     private User patient;
 
     @OneToOne
     private User doctor;
+
+    public String getService() {
+        return service;
+    }
+
+    public void setService(String service) {
+        this.service = service;
+    }
+
+    public String getDecription() {
+        return decription;
+    }
+
+    public void setDecription(String decription) {
+        this.decription = decription;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public Date getTime() {
+        return time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
+    }
+
+    public User getPatient() {
+        return patient;
+    }
+
+    public void setPatient(User patient) {
+        this.patient = patient;
+    }
+
+    public User getDoctor() {
+        return doctor;
+    }
+
+    public void setDoctor(User doctor) {
+        this.doctor = doctor;
+    }
+
 
 }

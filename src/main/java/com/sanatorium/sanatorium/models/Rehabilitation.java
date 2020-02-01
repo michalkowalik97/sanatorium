@@ -2,10 +2,12 @@ package com.sanatorium.sanatorium.models;
 
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Date;
 
 @Entity
 @Table(name = "REHABILITATIONS")
@@ -21,16 +23,16 @@ public class Rehabilitation {
     private String description;
 
     @Temporal(TemporalType.DATE)
-    private LocalDate fromDate;
+    private Date fromDate;
 
     @Temporal(TemporalType.TIME)
-    private LocalTime fromTime;
+    private Date fromTime;
 
     @Temporal(TemporalType.DATE)
-    private LocalDate toDate;
+    private Date toDate;
 
     @Temporal(TemporalType.TIME)
-    private LocalTime toTime;
+    private Date toTime;
 
     @OneToOne
     private User patient;
@@ -38,7 +40,80 @@ public class Rehabilitation {
     @OneToOne
     private User doctor;
 
-    @OneToOne
-    @Column(nullable = true)
+    @OneToOne @Nullable
     private Referral referral;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Date getFromDate() {
+        return fromDate;
+    }
+
+    public void setFromDate(Date fromDate) {
+        this.fromDate = fromDate;
+    }
+
+    public Date getFromTime() {
+        return fromTime;
+    }
+
+    public void setFromTime(Date fromTime) {
+        this.fromTime = fromTime;
+    }
+
+    public Date getToDate() {
+        return toDate;
+    }
+
+    public void setToDate(Date toDate) {
+        this.toDate = toDate;
+    }
+
+    public Date getToTime() {
+        return toTime;
+    }
+
+    public void setToTime(Date toTime) {
+        this.toTime = toTime;
+    }
+
+    public User getPatient() {
+        return patient;
+    }
+
+    public void setPatient(User patient) {
+        this.patient = patient;
+    }
+
+    public User getDoctor() {
+        return doctor;
+    }
+
+    public void setDoctor(User doctor) {
+        this.doctor = doctor;
+    }
+
+    public Referral getReferral() {
+        return referral;
+    }
+
+    public void setReferral(Referral referral) {
+        this.referral = referral;
+    }
+
+
 }

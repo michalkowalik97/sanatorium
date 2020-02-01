@@ -48,7 +48,8 @@ public class UserController {
     public ModelAndView addUser(HttpServletRequest req) {
         ModelAndView mav = new ModelAndView();
 
-        List<Permission> permissions = permRepo.findAll();
+       // List<Permission> permissions = permRepo.findAll();
+        List<Permission> permissions = permRepo.findByLevelNot(5);
         mav.setViewName("users/add");
         mav.addObject("permissions", permissions);
         return mav;
@@ -112,7 +113,8 @@ public class UserController {
             ModelAndView mav = new ModelAndView();
             mav.setViewName("users/editUser");
             mav.addObject("user", user);
-            List<Permission> permissions = permRepo.findAll();
+            //List<Permission> permissions = permRepo.findAll();
+            List<Permission> permissions = permRepo.findByLevelNot(5);
             mav.addObject("permissions", permissions);
             return mav;
         }
