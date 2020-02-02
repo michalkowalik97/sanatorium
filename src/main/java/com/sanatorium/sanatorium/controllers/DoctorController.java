@@ -115,4 +115,18 @@ public class DoctorController {
         return new ModelAndView("redirect:" + referer, "error", "Bład podczas edycji lekarza!");
 
     }
+
+
+    @RequestMapping("/deleteDoctor/{id}")
+    public ModelAndView deleteDoctor(@PathVariable("id") Long id){
+
+        try{
+            userRepo.removeUserById(id);
+        }catch (Exception e){
+            return new ModelAndView("redirect:/showDoctors", "error", "Błąd podczas usuwania");
+
+        }
+        return new ModelAndView("redirect:/showDoctors", "message", "Lekarz usunięty pomyślnie");
+
+    }
 }
