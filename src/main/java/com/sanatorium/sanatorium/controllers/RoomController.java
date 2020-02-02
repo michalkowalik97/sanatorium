@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -43,7 +45,97 @@ public class RoomController {
     @RequestMapping("/addRoom")
     public ModelAndView addRoom(HttpServletRequest req) {
         ModelAndView mav = new ModelAndView();
+        String referer = req.getHeader("Referer");
+
         mav.setViewName("room/add");
-        return mav;
+
+
+        Room floors = roomRepo.findFirstByFloorIsGreaterThanOrderByFloorDesc(0);
+
+
+        if (floors == null) {
+
+
+            return new ModelAndView("redirect:" + referer, "error", "Wystąpił błąd!");
+
+        } else {
+
+            mav.addObject("floor", floors.getFloor());
+            return mav;
+        }
+
+    }
+
+    @PostMapping("/saveRoom")
+    public ModelAndView saveRoom(HttpServletRequest req) {
+        String referer = req.getHeader("Referer");
+
+        try {
+            Room room = new Room();
+
+            room.setFloor(Integer.parseInt(req.getParameter("floor")));
+            room.setNumber(Integer.parseInt(req.getParameter("number")));
+            room.setState("wolny");
+            roomRepo.save(room);
+
+            return new ModelAndView("redirect:/showRooms", "message", "Pokój dodany.");
+        } catch (Exception e) {
+            return new ModelAndView("redirect:" + referer, "error", "Wystąpił błąd!");
+
+        }
+
+    }
+
+
+    @RequestMapping("/deleteRoom/{id}")
+    public ModelAndView deleteRoom(@PathVariable("id") Long id, HttpServletRequest req) {
+
+        try {
+            Long roomid = new Long(id);
+            roomRepo.removeRoomById(roomid);
+            return new ModelAndView("redirect:/showRooms", "message", "Pokój usunięty pomyślnie.");
+
+        } catch (Exception e) {
+            return new ModelAndView("redirect:/showRooms", "error", "Błąd podczas usuwania pokoju!");
+
+        }
+
+    }
+
+    @RequestMapping("/editRoom/{id}")
+    public ModelAndView editRoom(@PathVariable("id") Long id, HttpServletRequest req) {
+        ModelAndView mav = new ModelAndView();
+        String referer = req.getHeader("Referer");
+
+        Room room = roomRepo.findRoomById(id);
+        if (room != null) {
+            mav.setViewName("room/edit");
+            mav.addObject("room", room);
+            return mav;
+        }
+
+        return new ModelAndView("redirect:" + referer, "error", "Nie pokoju!");
+
+    }
+
+
+    @PostMapping("/editRoom/{id}")
+    public ModelAndView updateRoom(@PathVariable("id") Long id, HttpServletRequest req) {
+        String referer = req.getHeader("Referer");
+
+        Room room = roomRepo.findRoomById(id);
+        if (room != null) {
+            try {
+                room.setState(req.getParameter("state"));
+                roomRepo.save(room);
+                return new ModelAndView("redirect:/showRooms", "message", "Stan pokoju zaktualizowany pomyślnie.");
+
+            } catch (Exception e) {
+                return new ModelAndView("redirect:" + referer, "error", "Błąd podczas aktualizacji stanu.");
+
+            }
+        }
+        return new ModelAndView("redirect:" + referer, "error", "Błąd podczas aktualizacji stanu.");
+
     }
 }

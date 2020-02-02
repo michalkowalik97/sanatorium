@@ -6,7 +6,7 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>Sanatorium - edytuj lekarza</title>
+    <title>Sanatorium - edytuj pokój</title>
 
     <link rel="stylesheet" href="main.css">
 
@@ -27,21 +27,20 @@
 
     <div class="row p-1 align-items-center">
         <div class="col-md-4   align-items-center ">
-        <h3>Edytuj lekarza</h3>
+        <h3>Edytuj pokój</h3>
 
-            <form action="/editDoctor/${doctor.getId()}" method="post">
+            <form action="/editRoom/${room.getId()}" method="post">
 
 
                 <div class="form-group">
                     <label> Imię
                     </label>
-                    <input type="text" name="name" class="form-control" value="${doctor.getName()}">
-                </div>
+                    <select name="state" class="form-control select2">
+                        <option value="wolny" <c:if test="${room.getState().equals('wolny')}"> selected </c:if> >Wolny</option>
+                        <option value="zajety" <c:if test="${room.getState().equals('zajety')}"> selected </c:if> >Zajęty</option>
+                        <option value="zarezerwowany" <c:if test="${room.getState().equals('zarezerwowany')}"> selected </c:if> >Zarezerwowany</option>
+                    </select>
 
-                <div class="form-group">
-                    <label> Nazwisko
-                    </label>
-                    <input type="text" name="surname" class="form-control" value="${doctor.getSurname()}">
                 </div>
 
                 <div class="form-group ">

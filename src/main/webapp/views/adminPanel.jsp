@@ -55,13 +55,13 @@
             <jsp:include page="layout/cards/patients.jsp"></jsp:include>
         </div>
         <div class="col-md-6">
-            <jsp:include page="layout/cards/rehabilitations.jsp"></jsp:include>
+            <jsp:include page="layout/cards/turnuses.jsp"></jsp:include>
         </div>
     </div>
 
     <div class="row p-1 align-items-center">
         <div class="col-md-6">
-            <jsp:include page="layout/cards/turnuses.jsp"></jsp:include>
+            <jsp:include page="layout/cards/rehabilitations.jsp"></jsp:include>
         </div>
 
         <%--  <div class="col-md-6">

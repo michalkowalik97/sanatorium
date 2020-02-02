@@ -81,12 +81,12 @@
 
 
                 <td>
-                    <a href="/editRoom/<c:out value="${room.id}"/>" class="btn btn-info" data-toggle="tooltip"
+                    <a href="/editRoom/<c:out value="${room.getId()}"/>" class="btn btn-info" data-toggle="tooltip"
                        title="Zmień stan pokoju">
                         <i class="fa fa-wrench" aria-hidden="true"></i>
                     </a>
 
-                    <a href="/deleteRoom/<c:out value="${room.id}"/>" class="btn btn-danger" data-toggle="tooltip"
+                    <a href="/deleteRoom/<c:out value="${room.getId()}"/>" class="btn btn-danger" data-toggle="tooltip"
                        title="Usuń pokój">
                         <i class="fa fa-trash" aria-hidden="true"></i>
                     </a>

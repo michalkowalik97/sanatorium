@@ -55,6 +55,13 @@ public class Room {
     }
 
 
-
-
+    @Override
+    public String toString() {
+        return "Room{" +
+                "id=" + id +
+                ", floor=" + floor +
+                ", number=" + number +
+                ", state='" + state + '\'' +
+                '}';
+    }
 }
