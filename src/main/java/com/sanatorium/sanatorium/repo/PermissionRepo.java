@@ -11,4 +11,6 @@ public interface PermissionRepo extends JpaRepository<Permission,Integer> {
     Permission findPermissionById(int id);
 
     List<Permission> findByLevelNot(int level);
+
+    Permission findPermissionByName(String name);
 }

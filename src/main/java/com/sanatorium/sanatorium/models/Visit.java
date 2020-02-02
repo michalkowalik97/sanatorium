@@ -24,6 +24,9 @@ public class Visit {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateTime;
 
+    @Column(nullable = true)
+    public boolean active;
+
 
     @OneToOne
     private User patient;
@@ -35,6 +38,13 @@ public class Visit {
     @Nullable
     private Referral referral;
 
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
 
     public Date getDateTime() {
         return dateTime;

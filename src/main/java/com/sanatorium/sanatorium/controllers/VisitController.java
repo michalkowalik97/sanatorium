@@ -5,7 +5,6 @@ import com.sanatorium.sanatorium.models.Visit;
 import com.sanatorium.sanatorium.repo.UserRepo;
 import com.sanatorium.sanatorium.repo.VisitRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,8 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.jws.WebParam;
-import javax.jws.soap.SOAPBinding;
 import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -85,6 +82,7 @@ public class VisitController {
             visit.setDoctor(userRepo.findUserById(doctorId));
             visit.setPatient(userRepo.findUserById(patientId));
             visit.setDateTime(date);
+            visit.setActive(true);
             visitRepo.save(visit);
 
             return new ModelAndView("redirect:/showVisits", "message", "Wizyta dodana pomyślnie.");

@@ -17,19 +17,16 @@ public class Turnus {
     @Column(name = "id")
     private Long id;
 
+    @Column(nullable = true)
+    public boolean active;
 
 
-    @Temporal(TemporalType.DATE)
-    private Date fromDate;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fromDateTime;
 
-    @Temporal(TemporalType.TIME)
-    private Date fromTime;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date toDateTime;
 
-    @Temporal(TemporalType.DATE)
-    private Date toDate;
-
-    @Temporal(TemporalType.TIME)
-    private Date toTime;
 
     @OneToOne
     private Room room;
@@ -45,36 +42,28 @@ public class Turnus {
         this.id = id;
     }
 
-    public Date getFromDate() {
-        return fromDate;
+    public boolean isActive() {
+        return active;
     }
 
-    public void setFromDate(Date fromDate) {
-        this.fromDate = fromDate;
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
-    public Date getFromTime() {
-        return fromTime;
+    public Date getFromDateTime() {
+        return fromDateTime;
     }
 
-    public void setFromTime(Date fromTime) {
-        this.fromTime = fromTime;
+    public void setFromDateTime(Date fromDateTime) {
+        this.fromDateTime = fromDateTime;
     }
 
-    public Date getToDate() {
-        return toDate;
+    public Date getToDateTime() {
+        return toDateTime;
     }
 
-    public void setToDate(Date toDate) {
-        this.toDate = toDate;
-    }
-
-    public Date getToTime() {
-        return toTime;
-    }
-
-    public void setToTime(Date toTime) {
-        this.toTime = toTime;
+    public void setToDateTime(Date toDateTime) {
+        this.toDateTime = toDateTime;
     }
 
     public Room getRoom() {
