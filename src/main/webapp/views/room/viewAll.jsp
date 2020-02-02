@@ -5,7 +5,7 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>Sanatorium - lekarze</title>
+    <title>Sanatorium - pokoje</title>
 
     <link rel="stylesheet" href="/main.css">
 
@@ -14,9 +14,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/975f2122b4.js"<%-- crossorigin="anonymous"--%>></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
     <style>
 
     </style>
+    <script src="scripts/main.js"></script>
+
 </head>
 <body>
 <jsp:include page="../layout/dropdown.jsp"></jsp:include>
@@ -48,42 +53,41 @@
     </div>
 
     <div class="p-3 ">
-        <span class="h2">Lekarze</span>
+        <span class="h2">Pokoje</span>
 
-        <a href="/addDoctor" class="btn-info btn float-right"> + Dodaj lekarza</a>
+        <a href="/addRoom" class="btn-info btn float-right"> + Dodaj pokój</a>
     </div>
 
     <table class="table table-hover table-bordered">
         <thead>
         <tr>
-            <th>L.p.</th>
-            <th>Imię</th>
-            <th>Nazwisko</th>
-            <th>Login</th>
+            <th>ID</th>
+            <th>Piętro</th>
+            <th>Numer pokoju</th>
+            <th>Stan</th>
 
             <th>Akcje</th>
         </tr>
         </thead>
-        <%! int i = 1; %>
-        <c:forEach items="${doctors}" var="doctor">
+
+        <c:forEach items="${rooms}" var="room">
             <tr>
-                <td><% out.println(i);
-                    i = i + 1; %></td>
-                <td><c:out value="${doctor.getName()}"/>&nbsp;</td>
+                <td><c:out value="${room.getId()}"/></td>
+                <td><c:out value="${room.getFloor()}"/>&nbsp;</td>
 
-                <td><c:out value="${doctor.getSurname()}"/></td>
+                <td><c:out value="${room.getNumber()}"/></td>
 
-                <td><c:out value="${doctor.getLogin()}"/></td>
+                <td> ${room.getState()}</td>
 
 
                 <td>
-                    <a href="/editDoctor/<c:out value="${doctor.id}"/>" class="btn btn-info" data-toggle="tooltip"
-                       title="Edytuj lekarza">
+                    <a href="/editRoom/<c:out value="${room.id}"/>" class="btn btn-info" data-toggle="tooltip"
+                       title="Zmień stan pokoju">
                         <i class="fa fa-wrench" aria-hidden="true"></i>
                     </a>
 
-                    <a href="/deleteDoctor/<c:out value="${doctor.id}"/>" class="btn btn-danger" data-toggle="tooltip"
-                       title="Usuń lekarza">
+                    <a href="/deleteRoom/<c:out value="${room.id}"/>" class="btn btn-danger" data-toggle="tooltip"
+                       title="Usuń pokój">
                         <i class="fa fa-trash" aria-hidden="true"></i>
                     </a>
 

@@ -21,6 +21,7 @@ public class Room {
     @Column(nullable = true)
     private String state;
 
+
     public Long getId() {
         return id;
     }

@@ -5,7 +5,7 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>Sanatorium - lekarze</title>
+    <title>Sanatorium - pacjenci</title>
 
     <link rel="stylesheet" href="/main.css">
 
@@ -48,9 +48,9 @@
     </div>
 
     <div class="p-3 ">
-        <span class="h2">Lekarze</span>
+        <span class="h2">Pacjenci</span>
 
-        <a href="/addDoctor" class="btn-info btn float-right"> + Dodaj lekarza</a>
+        <a href="/addPatient" class="btn-info btn float-right"> + Dodaj pacjenta</a>
     </div>
 
     <table class="table table-hover table-bordered">
@@ -65,25 +65,25 @@
         </tr>
         </thead>
         <%! int i = 1; %>
-        <c:forEach items="${doctors}" var="doctor">
+        <c:forEach items="${patients}" var="patient">
             <tr>
                 <td><% out.println(i);
                     i = i + 1; %></td>
-                <td><c:out value="${doctor.getName()}"/>&nbsp;</td>
+                <td><c:out value="${patient.getName()}"/>&nbsp;</td>
 
-                <td><c:out value="${doctor.getSurname()}"/></td>
+                <td><c:out value="${patient.getSurname()}"/></td>
 
-                <td><c:out value="${doctor.getLogin()}"/></td>
+                <td><c:out value="${patient.getLogin()}"/></td>
 
 
                 <td>
-                    <a href="/editDoctor/<c:out value="${doctor.id}"/>" class="btn btn-info" data-toggle="tooltip"
-                       title="Edytuj lekarza">
+                    <a href="/editPatient/<c:out value="${patient.id}"/>" class="btn btn-info" data-toggle="tooltip"
+                       title="Edytuj pacjenta">
                         <i class="fa fa-wrench" aria-hidden="true"></i>
                     </a>
 
-                    <a href="/deleteDoctor/<c:out value="${doctor.id}"/>" class="btn btn-danger" data-toggle="tooltip"
-                       title="Usuń lekarza">
+                    <a href="/deletePatient/<c:out value="${patient.id}"/>" class="btn btn-danger" data-toggle="tooltip"
+                       title="Usuń pacjenta">
                         <i class="fa fa-trash" aria-hidden="true"></i>
                     </a>
 

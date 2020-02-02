@@ -27,7 +27,6 @@ public class Turnus {
     @Temporal(TemporalType.TIMESTAMP)
     private Date toDateTime;
 
-
     @OneToOne
     private Room room;
 
