@@ -13,5 +13,6 @@ public interface RoomRepo extends JpaRepository<Room, Integer> {
 
     Room findFirstByFloorIsGreaterThanOrderByFloorDesc(int floor);
 
+    List<Room> findRoomsByStateOrderByIdAsc(String state);
 
 }

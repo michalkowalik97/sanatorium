@@ -75,7 +75,7 @@ public class VisitController {
         Visit visit = new Visit();
         Long doctorId = Long.parseLong(req.getParameter("doctor"));
         Long patientId = Long.parseLong(req.getParameter("patient"));
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd'T'hh:mm");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm");
         try {
             Date date = dateFormat.parse(req.getParameter("date"));
 

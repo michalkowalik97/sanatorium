@@ -20,7 +20,6 @@ public class Turnus {
     @Column(nullable = true)
     public boolean active;
 
-
     @Temporal(TemporalType.TIMESTAMP)
     private Date fromDateTime;
 
@@ -81,4 +80,21 @@ public class Turnus {
         this.patient = patient;
     }
 
+    public String getDateTimeInHtmlFormat(Date dateTime) {
+        String date = dateTime.toString();
+        date = date.substring(0,10)+"T"+date.substring(11,16);
+        return date;
+    }
+
+    public String getDateTimeInUserFriendlyFormat(Date dateTime){
+        String date = dateTime.toString();
+        date = date.substring(0,10)+" Godz.: "+date.substring(11,16);
+        return date;
+    }
+
+    public String getDateInUserFriendlyFormat(Date dateTime){
+        String date = dateTime.toString();
+        date = date.substring(0,10);//+" Godz.: "+date.substring(11,16);
+        return date;
+    }
 }
