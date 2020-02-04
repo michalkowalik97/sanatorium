@@ -1,6 +1,7 @@
 package com.sanatorium.sanatorium.controllers;
 
 import com.sanatorium.sanatorium.helpers.PermissionResolwer;
+import com.sanatorium.sanatorium.helpers.UpdateHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +13,10 @@ public class HomeController {
 
     @Autowired
     PermissionResolwer p;
+
+    @Autowired
+    UpdateHelper updateHelper;
+
     /**
      * Metoda zwracająca stronę startową
      * @return plik JSP zawierający odpowiedną stronę
@@ -20,7 +25,7 @@ public class HomeController {
     public String homePage(HttpServletRequest req){
 
         if (req.getSession().getAttribute("user") != "" ){
-
+            updateHelper.refreshTurnuses();
             return p.selectHome((String) req.getSession().getAttribute("user"));
         }else {
             req.getSession().setAttribute("user","");

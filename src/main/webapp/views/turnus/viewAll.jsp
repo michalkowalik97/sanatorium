@@ -50,10 +50,9 @@
     <div class="p-3 ">
         <span class="h2 my-2">Pobyty</span> <br />
 
-        <a href="#" class="btn-light btn my-3 mx-1" >Wyświetl wszystkie</a>
-        <a href="#" class="btn-light btn my-3 mx-1" >Tylko aktywne</a>
-        <a href="#" class="btn-light btn my-3 mx-1" >Tylko nieaktywne</a>
-        <a href="#" class="btn-light btn my-3 mx-1" >Tylko aktywne</a>
+        <a href="/showTurnuses" class="btn-light btn my-3 mx-1" >Wyświetl wszystkie</a>
+        <a href="/showTurnuses/active" class="btn-light btn my-3 mx-1" >Tylko aktywne</a>
+        <a href="/showTurnuses/noactive" class="btn-light btn my-3 mx-1" >Tylko nieaktywne</a>
 
         <a href="/addTurnus" class="btn-info btn float-right"> + Dodaj pobyt</a>
     </div>
@@ -61,7 +60,7 @@
     <table class="table table-hover table-bordered">
         <thead>
         <tr>
-            <th>L.p.</th>
+            <th>ID</th>
             <th>Pacjent</th>
             <th>Czas pobytu</th>
             <th>Pokój</th>
@@ -69,11 +68,10 @@
             <th>Akcje</th>
         </tr>
         </thead>
-        <%! int i = 1; %>
+
         <c:forEach items="${turnuses}" var="turnus">
             <tr>
-                <td><% out.println(i);
-                    i = i + 1; %></td>
+                <td><c:out value="${turnus.getId()}"/></td>
                 <td><c:out value="${turnus.getPatient().getName()}"/>&nbsp;<c:out value="${turnus.getPatient().getSurname()}"/>&nbsp;</td>
 
                 <td><c:out value="${turnus.getDateInUserFriendlyFormat(turnus.getFromDateTime())}"/> - <c:out value="${turnus.getDateInUserFriendlyFormat(turnus.getToDateTime())}"/></td>

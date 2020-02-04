@@ -1,7 +1,6 @@
 package com.sanatorium.sanatorium.controllers;
 
 
-import com.sanatorium.sanatorium.models.Permission;
 import com.sanatorium.sanatorium.models.Room;
 import com.sanatorium.sanatorium.models.Turnus;
 import com.sanatorium.sanatorium.models.User;
@@ -17,10 +16,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.jws.soap.SOAPBinding;
 import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -56,6 +53,44 @@ public class TurnusesController {
 
         return mav;
     }
+
+    @RequestMapping("/showTurnuses/active")
+    public ModelAndView showActive(HttpServletRequest req) {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("turnus/viewAll");
+
+        List<Turnus> turnuses = turnusRepo.findAllByActiveOrderById(true);
+
+        if (turnuses.isEmpty()) {
+            mav.addObject("message", "Nie znaleźliśmy żadnego pobytu.");
+
+        } else {
+            mav.addObject("turnuses", turnuses);
+
+        }
+
+        return mav;
+    }
+
+    @RequestMapping("/showTurnuses/noactive")
+    public ModelAndView showNoactive(HttpServletRequest req) {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("turnus/viewAll");
+
+        List<Turnus> turnuses = turnusRepo.findAllByActiveOrderById(false);
+
+        if (turnuses.isEmpty()) {
+            mav.addObject("message", "Nie znaleźliśmy żadnego pobytu.");
+
+        } else {
+            mav.addObject("turnuses", turnuses);
+
+        }
+
+        return mav;
+    }
+
+
 
     @RequestMapping("/addTurnus")
     public ModelAndView addTurnus(HttpServletRequest req) {
