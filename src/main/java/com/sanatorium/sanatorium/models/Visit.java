@@ -105,4 +105,10 @@ public class Visit {
         date = date.substring(0,10)+" Godz.: "+date.substring(11,16);
         return date;
     }
+
+    public String getDateInUserFriendlyFormat(){
+        String date = dateTime.toString();
+        date = date.substring(0,10);
+        return date;
+    }
 }

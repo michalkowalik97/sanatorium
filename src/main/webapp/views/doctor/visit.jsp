@@ -79,7 +79,7 @@
                 ${visit.getPatient().getName()}&nbsp;${visit.getPatient().getSurname()}
             </div>
             <div class="h3 mb-2">
-                Historia chorób pacjenta
+                Historia wizyt pacjenta
             </div>
             <div style=" height: 400px; overflow-y: scroll;">
                 <table class="table table-hover table-bordered">
@@ -99,17 +99,17 @@
                             <td>
                                 <c:out value="${card.getDescription()}"/> <br/>
 
-                                <c:if test="${!card.getPrescription().getMedicament().isEmpty()}">
-                                    Przepisane leki: <c:forEach items="card.getPrescription().getMedicament()"
+                                <c:if test="${card.getPrescription() != null }">
+                                    Przepisane leki: <c:forEach items="${card.getPrescription().getMedicament()}"
                                                                 var="medic">
-                                    <c:out value="${medic.getName()}"/> <c:out value="${medic.getDose()}"/>,
+                                    <c:out value="${medic.getName()}"/> <c:out value="${medic.getDose()}"/> mg,
                                 </c:forEach>
                                 </c:if> <br/>
 
-                                <c:if test="${card.getPrescription().getReferral() != null}">
+                                <c:if test="${card.getReferral() != null}">
                                     Wystawione skierowanie: <c:out
-                                        value="${card.getPrescription().getReferral().getService()}"/> <c:out
-                                        value="${card.getPrescription().getReferral().getDecription()}"/>
+                                        value="${card.getReferral().getService()}"/>, Rozpoznanie: <c:out
+                                        value="${card.getReferral().getDecription()}"/>
 
                                 </c:if>
 
@@ -176,7 +176,7 @@
                         <div class="form-group">
                             <label>Nazwa badania
                             </label>
-                            <input type="text" name="referal" class="form-control ">
+                            <input type="text" name="referal_service" class="form-control ">
                         </div>
 
                         <div class="form-group">

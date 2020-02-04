@@ -135,7 +135,7 @@ public class TurnusesController {
             String checkbox = (req.getParameter("newPatient"));
             Turnus turnus = new Turnus();
 
-            System.out.println(req.getParameter("dateStart"));
+
 
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             try {

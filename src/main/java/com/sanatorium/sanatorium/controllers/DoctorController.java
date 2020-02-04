@@ -1,10 +1,8 @@
 package com.sanatorium.sanatorium.controllers;
 
-import com.sanatorium.sanatorium.models.Medicament;
-import com.sanatorium.sanatorium.models.PatientCard;
-import com.sanatorium.sanatorium.models.User;
-import com.sanatorium.sanatorium.models.Visit;
+import com.sanatorium.sanatorium.models.*;
 import com.sanatorium.sanatorium.repo.*;
+import org.omg.PortableInterceptor.INACTIVE;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
@@ -14,9 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.jws.soap.SOAPBinding;
-import javax.persistence.Entity;
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -34,11 +32,16 @@ public class DoctorController {
     PermissionRepo permRepo;
 
     @Autowired
-    PatientCardRepo patientCard;
+    PatientCardRepo patientCardRepo;
 
     @Autowired
     MedicammentRepo medRepo;
 
+    @Autowired
+    PrescriptionRepo prescriptionRepo;
+
+    @Autowired
+    ReferalRepo referalRepo;
 
     @RequestMapping("/showDoctors")
     public ModelAndView showAll(HttpServletRequest req) {
@@ -169,7 +172,7 @@ public class DoctorController {
         Visit visit = visitRepo.findVisitById(id);
 
         if (visit != null) {
-            List<PatientCard> cards = patientCard.findPatientCardsByPatientOrderByIdDesc(visit.getPatient());
+            List<PatientCard> cards = patientCardRepo.findPatientCardsByPatientOrderByIdDesc(visit.getPatient());
             List<Medicament> medicaments = medRepo.findAll(Sort.by(Sort.Direction.ASC, "name"));
 
             mav.addObject("visit", visit);
@@ -180,6 +183,57 @@ public class DoctorController {
             return mav;
         }
         return mav;
+    }
+
+
+    @PostMapping("/endVisit/{id}")
+    public ModelAndView endVisit(@PathVariable("id") Long id, HttpServletRequest req){
+        String referer = req.getHeader("Referer");
+       try{
+        ModelAndView mav = new ModelAndView();
+        Visit visit = visitRepo.findVisitById(id);
+
+        String medbox = (req.getParameter("prescription"));
+        String refbox = (req.getParameter("referal"));
+
+        if (visit != null){
+            PatientCard patientCard = new PatientCard();
+            patientCard.setVisit(visit);
+            patientCard.setPatient(visit.getPatient());
+            patientCard.setDescription(req.getParameter("description"));
+
+            if (medbox != null){
+                Prescription prescription = new Prescription();
+                prescription.setVisit(visit);
+                prescription.setMedicament(medRepo.findMedicamentsById(Long.parseLong(req.getParameter("medicamment"))));
+                prescriptionRepo.save(prescription);
+                patientCard.setPrescription(prescription);
+            }
+
+            if (refbox != null){
+                Referral referral = new Referral();
+                referral.setDate(new Date());
+                referral.setDoctor(visit.getPatient());
+                referral.setPatient(visit.getPatient());
+                referral.setService(req.getParameter("referal_service"));
+                referral.setDecription(req.getParameter("referal_description"));
+                referalRepo.save(referral);
+                patientCard.setReferral(referral);
+            }
+
+            patientCardRepo.save(patientCard);
+            visit.setActive(false);
+            visitRepo.save(visit);
+            return new ModelAndView("redirect:/", "message", "Wizyta zakończona.");
+
+        }else{
+            return new ModelAndView("redirect:" + referer, "error", "Błąd podczas zapisu wizyty!");
+        }
+
+        }catch (Exception e){
+           return new ModelAndView("redirect:" + referer, "error", "Błąd podczas zapisu wizyty!");
+
+       }
     }
 
 }

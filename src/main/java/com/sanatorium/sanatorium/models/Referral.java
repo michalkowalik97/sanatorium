@@ -25,8 +25,6 @@ public class Referral {
     @Temporal(TemporalType.DATE)
     private Date date;
 
-    @Temporal(TemporalType.TIME)
-    private Date time;
 
     @OneToOne
     private User patient;
@@ -66,13 +64,6 @@ public class Referral {
         this.date = date;
     }
 
-    public Date getTime() {
-        return time;
-    }
-
-    public void setTime(Date time) {
-        this.time = time;
-    }
 
     public User getPatient() {
         return patient;
