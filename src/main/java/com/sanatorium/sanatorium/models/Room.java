@@ -55,6 +55,10 @@ public class Room {
     }
 
 
+    /**
+     * Przeciążona metoda toString, definiująca w jaki sposób obiekt powinien być reprezentowany przez ciąg znaków
+     * @return ciąg znaków opisujący obiekt
+     */
     @Override
     public String toString() {
         return "Room{" +

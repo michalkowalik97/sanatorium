@@ -80,18 +80,31 @@ public class Turnus {
         this.patient = patient;
     }
 
+    /**
+     * Metoda konwertująca datę na format obsługiwany przez HTML
+     * @param dateTime data w formacie DateTime
+     * @return ciąg znaków w formacie DateTime obsługiwanym przez HTML
+     */
     public String getDateTimeInHtmlFormat(Date dateTime) {
         String date = dateTime.toString();
         date = date.substring(0,10)+"T"+date.substring(11,16);
         return date;
     }
-
+    /**
+     * Metoda konwertująca datę na format przyjazny użytkownikowi
+     * @param dateTime data w formacie DateTime
+     * @return ciąg znaków w formacie DateTime (data i czas) przyjaznym użytkownikowi
+     */
     public String getDateTimeInUserFriendlyFormat(Date dateTime){
         String date = dateTime.toString();
         date = date.substring(0,10)+" Godz.: "+date.substring(11,16);
         return date;
     }
-
+    /**
+     * Metoda konwertująca datę na format przyjazny użytkownikowi
+     * @param dateTime data w formacie DateTime
+     * @return ciąg znaków w formacie Date (tylko data) przyjaznym użytkownikowi
+     */
     public String getDateInUserFriendlyFormat(Date dateTime){
         String date = dateTime.toString();
         date = date.substring(0,10);//+" Godz.: "+date.substring(11,16);

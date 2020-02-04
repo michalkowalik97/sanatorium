@@ -35,7 +35,11 @@ public class TurnusesController {
 
     @Autowired
     PermissionRepo permRepo;
-
+    /**
+     * Metoda zwracająca widok z listą wszystkich turnusów w bazie
+     * @param req zapytanie HTTP
+     * @return obiekt ModelAndView z odpowiedzią
+     */
     @RequestMapping("/showTurnuses")
     public ModelAndView showAll(HttpServletRequest req) {
         ModelAndView mav = new ModelAndView();
@@ -53,7 +57,11 @@ public class TurnusesController {
 
         return mav;
     }
-
+    /**
+     * Metoda zwracająca widok z listą wszystkich aktywnych turnusów w bazie
+     * @param req zapytanie HTTP
+     * @return obiekt ModelAndView z odpowiedzią
+     */
     @RequestMapping("/showTurnuses/active")
     public ModelAndView showActive(HttpServletRequest req) {
         ModelAndView mav = new ModelAndView();
@@ -71,7 +79,11 @@ public class TurnusesController {
 
         return mav;
     }
-
+    /**
+     * Metoda zwracająca widok z listą wszystkich nieaktywnych turnusów w bazie
+     * @param req zapytanie HTTP
+     * @return obiekt ModelAndView z odpowiedzią
+     */
     @RequestMapping("/showTurnuses/noactive")
     public ModelAndView showNoactive(HttpServletRequest req) {
         ModelAndView mav = new ModelAndView();
@@ -91,7 +103,11 @@ public class TurnusesController {
     }
 
 
-
+    /**
+     * Metoda zwracająca widok z formularzem dodawania turnusu
+     * @param req zapytanie HTTP
+     * @return obiekt ModelAndView z odpowiedzią
+     */
     @RequestMapping("/addTurnus")
     public ModelAndView addTurnus(HttpServletRequest req) {
         ModelAndView mav = new ModelAndView();
@@ -104,7 +120,11 @@ public class TurnusesController {
 
         return mav;
     }
-
+    /**
+     * Metoda obsługująca formularz dodawania turnusu do bazy
+     * @param req zapytanie HTTP
+     * @return obiekt ModelAndView z odpowiedzią
+     */
     @PostMapping("/saveTurnus")
     public ModelAndView saveTurnus(HttpServletRequest req) {
 

@@ -21,7 +21,11 @@ public class RoomController {
 
     @Autowired
     RoomRepo roomRepo;
-
+    /**
+     * Metoda zwracająca widok z listą wszystkich pokoi w bazie
+     * @param req zapytanie HTTP
+     * @return obiekt ModelAndView z odpowiedzią
+     */
     @RequestMapping("/showRooms")
     public ModelAndView showAll(HttpServletRequest req) {
         ModelAndView mav = new ModelAndView();
@@ -41,7 +45,11 @@ public class RoomController {
 
     }
 
-
+    /**
+     * Metoda zwracająca widok z formularzem dodawania pokoju
+     * @param req zapytanie HTTP
+     * @return obiekt ModelAndView z odpowiedzią
+     */
     @RequestMapping("/addRoom")
     public ModelAndView addRoom(HttpServletRequest req) {
         ModelAndView mav = new ModelAndView();
@@ -65,7 +73,11 @@ public class RoomController {
         }
 
     }
-
+    /**
+     * Metoda obsługująca formularz dodawania pokoju do bazy
+     * @param req zapytanie HTTP
+     * @return obiekt ModelAndView z odpowiedzią
+     */
     @PostMapping("/saveRoom")
     public ModelAndView saveRoom(HttpServletRequest req) {
         String referer = req.getHeader("Referer");
@@ -86,7 +98,12 @@ public class RoomController {
 
     }
 
-
+    /**
+     * Metoda wyświetlająca formularz usuwania pokoju
+     * @param id  identyfikator pokoju w bazie
+     * @param req zapytanie HTTP
+     * @return obiekt ModelAndView z odpowiedzią
+     */
     @RequestMapping("/deleteRoom/{id}")
     public ModelAndView deleteRoom(@PathVariable("id") Long id, HttpServletRequest req) {
 
@@ -101,7 +118,12 @@ public class RoomController {
         }
 
     }
-
+    /**
+     * Metoda wyświetlająca formularz edycji danych pokoju
+     * @param id  identyfikator pokoju w bazie
+     * @param req zapytanie HTTP
+     * @return obiekt ModelAndView z odpowiedzią
+     */
     @RequestMapping("/editRoom/{id}")
     public ModelAndView editRoom(@PathVariable("id") Long id, HttpServletRequest req) {
         ModelAndView mav = new ModelAndView();
@@ -118,7 +140,12 @@ public class RoomController {
 
     }
 
-
+    /**
+     * Metoda obsługująca formularz edycji danych pokoju
+     * @param id  identyfikator pokoju w bazie
+     * @param req zapytanie HTTP
+     * @return obiekt ModelAndView z odpowiedzią
+     */
     @PostMapping("/editRoom/{id}")
     public ModelAndView updateRoom(@PathVariable("id") Long id, HttpServletRequest req) {
         String referer = req.getHeader("Referer");

@@ -26,7 +26,11 @@ public class UserController {
     @Autowired
     PermissionRepo permRepo;
 
-
+    /**
+     * Metoda zwracająca widok z listą wszystkich użytkownikków w bazie
+     * @param req zapytanie HTTP
+     * @return obiekt ModelAndView z odpowiedzią
+     */
     @RequestMapping("/showUsers")
     public ModelAndView showAll(HttpServletRequest req) {
 
@@ -43,7 +47,11 @@ public class UserController {
         mav.addObject("message", "Nie znaleźliśmy żadnego użytkownika");
         return mav;
     }
-
+    /**
+     * Metoda zwracająca widok z formularzem dodawania użytkownika
+     * @param req zapytanie HTTP
+     * @return obiekt ModelAndView z odpowiedzią
+     */
     @RequestMapping("/addUser")
     public ModelAndView addUser(HttpServletRequest req) {
         ModelAndView mav = new ModelAndView();
@@ -54,7 +62,11 @@ public class UserController {
         mav.addObject("permissions", permissions);
         return mav;
     }
-
+    /**
+     * Metoda obsługująca formularz dodawania użytkownika do bazy
+     * @param req zapytanie HTTP
+     * @return obiekt ModelAndView z odpowiedzią
+     */
     @PostMapping("/saveUser")
     public ModelAndView store(HttpServletRequest req) {
         ModelAndView mav = new ModelAndView();
@@ -86,7 +98,11 @@ public class UserController {
 
         return new ModelAndView("redirect:/showUsers", "message", "Użytkownik dodany pomyślnie");
     }
-
+    /**
+     * Metoda obsługująca żądanie usunięcia użytkownika z bazy
+     * @param id identyfikator użytkownika w bazie
+     * @return obiekt ModelAndView z odpowiedzią
+     */
     @RequestMapping("/deleteUser/{id}")
     public ModelAndView deleteUser(@PathVariable("id") Long id) {
 
@@ -103,7 +119,11 @@ public class UserController {
 
     }
 
-
+    /**
+     * Metoda wyświetlająca formularz edycji danych użytkownika
+     * @param id  identyfikator użytkownika w bazie
+     * @return obiekt ModelAndView z odpowiedzią
+     */
     @RequestMapping("/editUser/{id}")
     public ModelAndView getUserEditForm(@PathVariable("id") Long id) {
 
@@ -122,7 +142,12 @@ public class UserController {
         return new ModelAndView("redirect:/showUsers", "error", "Wystąpił błąd");
 
     }
-
+    /**
+     * Metoda obsługująca formularz edycji danych użytkownika
+     * @param id  identyfikator użytkownika w bazie
+     * @param req zapytanie HTTP
+     * @return obiekt ModelAndView z odpowiedzią
+     */
     @RequestMapping("/updateUser/{id}")
     public ModelAndView updateUser(@PathVariable("id") Long id, HttpServletRequest req) {
 
@@ -144,7 +169,12 @@ public class UserController {
         return new ModelAndView("redirect:/showUsers", "error", "Wystąpił błąd podczas aktualizacji danych");
     }
 
-
+    /**
+     * Metoda wyświetlająca widok z ustawieniami użytkownika
+     * @param login  login użytkownika w bazie
+     * @param req    zapytanie http
+     * @return obiekt ModelAndView z odpowiedzią
+     */
     @RequestMapping("/user/configuration/{login}")
     public ModelAndView accountConfig(@PathVariable("login") String login, HttpServletRequest req) {
         User user = repo.findUserByLogin(login);
@@ -159,7 +189,11 @@ public class UserController {
         return new ModelAndView("redirect:/");
 
     }
-
+    /**
+     * Metoda wyświetlająca formularz edycji hasła użytkownika
+     * @param id  identyfikator użytkownika w bazie
+     * @return obiekt ModelAndView z odpowiedzią
+     */
     @RequestMapping("/user/edit/password/{id}")
     public ModelAndView changePasswordForm(@PathVariable("id") Long id, HttpServletRequest req) {
         User user = repo.findUserById(id);
@@ -174,7 +208,12 @@ public class UserController {
                 return new ModelAndView("redirect:/");
 
     }
-
+    /**
+     * Metoda obsługująca żądanie resetowania hasła użytkownika
+     * @param id  identyfikator użytkownika w bazie
+     * @param req zapytanie HTTP
+     * @return obiekt ModelAndView z odpowiedzią
+     */
     @RequestMapping("/resetPassword/{id}")
     public ModelAndView resetPassword(@PathVariable("id") Long id, HttpServletRequest req) {
         User user = repo.findUserById(id);
@@ -192,7 +231,12 @@ public class UserController {
 
     }
 
-
+    /**
+     * Metoda obsługująca żądanie zmiany hasła użytkownika
+     * @param id  identyfikator użytkownika w bazie
+     * @param req zapytanie HTTP
+     * @return obiekt ModelAndView z odpowiedzią
+     */
     @PostMapping("/user/edit/password/{id}")
     public ModelAndView changePassword(@PathVariable("id") Long id, HttpServletRequest req) {
         User user = repo.findUserById(id);

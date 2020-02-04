@@ -23,6 +23,9 @@ public class UpdateHelper {
         this.roomRepo = roomRepo;
     }
 
+    /**
+     * Metoda odświeżająca listę aktywnych turnusów
+     */
     public void refreshTurnuses() {
         List<Turnus> turnuses = turnusRepo.findAllByActive(true);
         Date date = new Date();

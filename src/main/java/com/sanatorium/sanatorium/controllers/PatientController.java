@@ -29,7 +29,11 @@ public class PatientController {
     @Autowired
     PermissionRepo permRepo;
 
-
+    /**
+     * Metoda zwracająca widok z listą wszystkich pacjentów w bazie
+     * @param req zapytanie HTTP
+     * @return obiekt ModelAndView z odpowiedzią
+     */
     @RequestMapping("/showPatients")
     public ModelAndView showAll(HttpServletRequest req) {
         ModelAndView mav = new ModelAndView();
@@ -49,14 +53,22 @@ public class PatientController {
 
     }
 
-
+    /**
+     * Metoda zwracająca widok z formularzem dodawania pacjenta
+     * @param req zapytanie HTTP
+     * @return obiekt ModelAndView z odpowiedzią
+     */
     @RequestMapping("/addPatient")
     public ModelAndView addPatient(HttpServletRequest req) {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("patient/add");
         return mav;
     }
-
+    /**
+     * Metoda obsługująca formularz dodawania pacjenta do bazy
+     * @param req zapytanie HTTP
+     * @return obiekt ModelAndView z odpowiedzią
+     */
     @PostMapping("/savePatient")
     public ModelAndView savePatient(HttpServletRequest req) {
         ModelAndView mav = new ModelAndView();
@@ -75,7 +87,12 @@ public class PatientController {
             return new ModelAndView("redirect:/showPatients", "erorr", "Błąd podczas dodawania pacjenta.");
         }
     }
-
+    /**
+     * Metoda wyświetlająca formularz edycji danych pacjenta
+     * @param id  identyfikator pacjenta w bazie
+     * @param req zapytanie HTTP
+     * @return obiekt ModelAndView z odpowiedzią
+     */
     @RequestMapping("/editPatient/{id}")
     public ModelAndView editPatient(@PathVariable("id") Long id, HttpServletRequest req) {
         ModelAndView mav = new ModelAndView();
@@ -92,7 +109,12 @@ public class PatientController {
         return new ModelAndView("redirect:" + referer, "error", "Nie znaleziono pacjenta!");
 
     }
-
+    /**
+     * Metoda obsługująca formularz edycji danych pacjenta
+     * @param id  identyfikator pacjenta w bazie
+     * @param req zapytanie HTTP
+     * @return obiekt ModelAndView z odpowiedzią
+     */
     @PostMapping("/editPatient/{id}")
     public ModelAndView updatePatient(@PathVariable("id") Long id, HttpServletRequest req) {
         User patient = userRepo.findUserById(id);
@@ -114,7 +136,11 @@ public class PatientController {
 
     }
 
-
+    /**
+     * Metoda obsługująca żądanie usunięcia pacjenta z bazy
+     * @param id identyfikator pacjenta w bazie
+     * @return obiekt ModelAndView z odpowiedzią
+     */
     @RequestMapping("/deletePatient/{id}")
     public ModelAndView deletePatient(@PathVariable("id") Long id){
 

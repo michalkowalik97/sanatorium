@@ -31,7 +31,11 @@ public class DoctorController {
     @Autowired
     PermissionRepo permRepo;
 
-
+    /**
+     * Metoda zwracająca widok z listą wszystkich lekarzy w bazie
+     * @param req zapytanie HTTP
+     * @return obiekt ModelAndView z odpowiedzią
+     */
     @RequestMapping("/showDoctors")
     public ModelAndView showAll(HttpServletRequest req) {
         ModelAndView mav = new ModelAndView();
@@ -51,14 +55,22 @@ public class DoctorController {
 
     }
 
-
+    /**
+     * Metoda zwracająca widok z formularzem dodawania lekarza
+     * @param req zapytanie HTTP
+     * @return obiekt ModelAndView z odpowiedzią
+     */
     @RequestMapping("/addDoctor")
     public ModelAndView addDoctor(HttpServletRequest req) {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("doctor/add");
         return mav;
     }
-
+    /**
+     * Metoda obsługująca formularz dodawania lekarza do bazy
+     * @param req zapytanie HTTP
+     * @return obiekt ModelAndView z odpowiedzią
+     */
     @PostMapping("/saveDoctor")
     public ModelAndView saveDoctor(HttpServletRequest req) {
         ModelAndView mav = new ModelAndView();
@@ -77,7 +89,12 @@ public class DoctorController {
             return new ModelAndView("redirect:/showDoctors", "erorr", "Błąd podczas dodawania lekarza.");
         }
     }
-
+    /**
+     * Metoda wyświetlająca formularz edycji danych lekarza
+     * @param id  identyfikator lekarza w bazie
+     * @param req zapytanie HTTP
+     * @return obiekt ModelAndView z odpowiedzią
+     */
     @RequestMapping("/editDoctor/{id}")
     public ModelAndView editDoctor(@PathVariable("id") Long id, HttpServletRequest req) {
         ModelAndView mav = new ModelAndView();
@@ -94,7 +111,12 @@ public class DoctorController {
         return new ModelAndView("redirect:" + referer, "error", "Nie znaleziono lekarza!");
 
     }
-
+    /**
+     * Metoda obsługująca formularz edycji danych lekarza
+     * @param id  identyfikator lekarza w bazie
+     * @param req zapytanie HTTP
+     * @return obiekt ModelAndView z odpowiedzią
+     */
     @PostMapping("/editDoctor/{id}")
     public ModelAndView updateDoctor(@PathVariable("id") Long id, HttpServletRequest req) {
         User doctor = userRepo.findUserById(id);
@@ -116,7 +138,11 @@ public class DoctorController {
 
     }
 
-
+    /**
+     * Metoda obsługująca żądanie usunięcia lekarza z bazy
+     * @param id identyfikator lekarza w bazie
+     * @return obiekt ModelAndView z odpowiedzią
+     */
     @RequestMapping("/deleteDoctor/{id}")
     public ModelAndView deleteDoctor(@PathVariable("id") Long id){
 

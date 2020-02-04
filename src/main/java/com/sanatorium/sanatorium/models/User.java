@@ -76,7 +76,10 @@ public class User {
     public void setPermission(Permission permission) {
         this.permission = permission;
     }
-
+    /**
+     * Przeciążona metoda toString, definiująca w jaki sposób obiekt powinien być reprezentowany przez ciąg znaków
+     * @return ciąg znaków opisujący obiekt
+     */
     @Override
     public String toString() {
         return "User{" +

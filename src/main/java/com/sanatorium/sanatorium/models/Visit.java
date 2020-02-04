@@ -86,14 +86,20 @@ public class Visit {
     public void setReferral(Referral referral) {
         this.referral = referral;
     }
-
+    /**
+     * Metoda konwertująca datę w obiekcie na format obsługiwany przez HTML
+     * @return ciąg znaków w formacie DateTime obsługiwanym przez HTML
+     */
     public String getDateTimeInHtmlFormat() {
 
         String date = dateTime.toString();
         date = date.substring(0,10)+"T"+date.substring(11,16);
         return date;
     }
-
+    /**
+     * Metoda konwertująca datę w obiekcie na format przyjazny użytkownikowi
+     * @return ciąg znaków w formacie DateTime (data i czas) przyjaznym użytkownikowi
+     */
     public String getDateTimeInUserFriendlyFormat(){
         String date = dateTime.toString();
         date = date.substring(0,10)+" Godz.: "+date.substring(11,16);

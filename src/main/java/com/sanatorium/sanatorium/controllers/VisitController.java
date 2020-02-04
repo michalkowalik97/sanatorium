@@ -28,7 +28,11 @@ public class VisitController {
 
     @Autowired
     UserRepo userRepo;
-
+    /**
+     * Metoda zwracająca widok z formularzem dodawania wizyty
+     * @param req zapytanie HTTP
+     * @return obiekt ModelAndView z odpowiedzią
+     */
     @RequestMapping("/addVisit")
     public ModelAndView addVisit(HttpServletRequest req) {
 
@@ -65,7 +69,11 @@ public class VisitController {
 
         return new ModelAndView("redirect:/");
     }
-
+    /**
+     * Metoda obsługująca formularz dodawania wizyty do bazy
+     * @param req zapytanie HTTP
+     * @return obiekt ModelAndView z odpowiedzią
+     */
     @PostMapping("/saveVisit")
     public ModelAndView saveVisit(HttpServletRequest req) {
         ModelAndView mav = new ModelAndView();
@@ -93,7 +101,11 @@ public class VisitController {
 
     }
 
-
+    /**
+     * Metoda zwracająca widok z listą wszystkich wizyt w bazie
+     * @param req zapytanie HTTP
+     * @return obiekt ModelAndView z odpowiedzią
+     */
     @RequestMapping("/showVisits")
     public ModelAndView showVisits(HttpServletRequest req){
         ModelAndView mav = new ModelAndView();
@@ -112,7 +124,12 @@ public class VisitController {
 
     }
 
-
+    /**
+     * Metoda wyświetlająca formularz edycji danych wizyty
+     * @param id  identyfikator wizyty w bazie
+     * @param req zapytanie HTTP
+     * @return obiekt ModelAndView z odpowiedzią
+     */
     @RequestMapping("/editVisit/{id}")
     public ModelAndView editVisit(@PathVariable("id") Long id, HttpServletRequest req){
         ModelAndView mav = new ModelAndView();
@@ -135,7 +152,12 @@ public class VisitController {
         return new ModelAndView("redirect:" + referer, "error", "Nie znaleziono wizyty!");
 
     }
-
+    /**
+     * Metoda obsługująca formularz edycji danych wizyty
+     * @param id  identyfikator wizyty w bazie
+     * @param req zapytanie HTTP
+     * @return obiekt ModelAndView z odpowiedzią
+     */
     @PostMapping("/editVisit/{id}")
     public ModelAndView updateVisit(@PathVariable("id") Long id, HttpServletRequest req){
         ModelAndView mav = new ModelAndView();
@@ -165,7 +187,11 @@ public class VisitController {
         return new ModelAndView("redirect:" + referer, "error", "Nie udało się zaktualizować wizyty!");
     }
 
-
+    /**
+     * Metoda obsługująca żądanie usunięcia wizyty z bazy
+     * @param id identyfikator wizyty w bazie
+     * @return obiekt ModelAndView z odpowiedzią
+     */
     @RequestMapping("/deleteVisit/{id}")
     public ModelAndView deleteVisit(@PathVariable("id") Long id){
 
