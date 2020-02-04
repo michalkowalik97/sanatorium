@@ -48,7 +48,7 @@
 
 <div class="p-5">
     <div class="row p-1 align-items-center">
-        <div class="col-md-4" >
+        <div class="col-md-3">
             <div class="h3 my-2">
                 Zaplanowane wizyty
             </div>
@@ -56,54 +56,77 @@
                 <table class="table table-hover table-bordered">
                     <thead>
                     <tr>
-                        <%--  <th>L.p.</th>--%>
 
                         <th>Lekarz</th>
                         <th>Data i godzina</th>
 
-                        <%--<th>Akcje</th>--%>
                     </tr>
                     </thead>
-            <%--        <%! int i =1; %>--%>
+
                     <c:forEach items="${visits}" var="visit">
                         <tr>
-                                <%--         <td> <% out.println(i); i=i+1; %></td>--%>
-
-                            <td><c:out value="${visit.getDoctor().getName()}"/>&nbsp;<c:out value="${visit.getDoctor().getSurname()}"/></td>
+                            <td><c:out value="${visit.getDoctor().getName()}"/>&nbsp;<c:out
+                                    value="${visit.getDoctor().getSurname()}"/></td>
 
                             <td><c:out value="${visit.getDateTimeInUserFriendlyFormat()}"/></td>
 
-
-<%--
-                            <td>
-
-                                <a href="/startVisit/<c:out value="${visit.id}"/>" class="btn btn-light" data-toggle="tooltip"
-                                   title="Rozpocznij wizytę">
-                                    <i class="fas fa-band-aid"></i>
-                                </a>
-
-                                <a href="/editVisit/<c:out value="${visit.id}"/>" class="btn btn-info" data-toggle="tooltip"
-                                   title="Edytuj wizytę">
-                                    <i class="fa fa-wrench" aria-hidden="true"></i>
-                                </a>
-
-                                <a href="/deleteVisit/<c:out value="${visit.id}"/>" class="btn btn-danger" data-toggle="tooltip"
-                                   title="Usuń wizytę">
-                                    <i class="fa fa-trash" aria-hidden="true"></i>
-                                </a>
-
-                            </td>--%>
                         </tr>
                     </c:forEach>
                 </table>
 
             </div>
-<%--
 
-            <div class="my-3">
-                <jsp:include page="../layout/cards/visits.jsp"></jsp:include>
+        </div>
+
+        <div class="col-md-5">
+            <div class="h2 mb-1">
+                ${visit.getPatient().getName()}&nbsp;${visit.getPatient().getSurname()}
             </div>
---%>
+            <div class="h3 mb-2">
+                Historia wizyt pacjenta
+            </div>
+            <div style=" height: 400px; overflow-y: scroll;">
+                <table class="table table-hover table-bordered">
+                    <thead>
+                    <tr>
+
+                        <th>Data</th>
+                        <th>Lekarz</th>
+                        <th>Opis</th>
+
+                    </tr>
+                    </thead>
+                    <%! int i = 1; %>
+                    <c:forEach items="${cards}" var="card">
+                        <tr>
+                            <td><c:out value="${card.getVisit().getDateInUserFriendlyFormat()}"/>&nbsp;</td>
+                            <td><c:out value="${card.getVisit().getDoctor().getName()}"/>&nbsp;<c:out value="${card.getVisit().getDoctor().getSurname()}"/></td>
+                            <td>
+                                <c:out value="${card.getDescription()}"/> <br/>
+
+                                <c:if test="${card.getPrescription() != null }">
+                                    Przepisane leki: <c:forEach items="${card.getPrescription().getMedicament()}"
+                                                                var="medic">
+                                    <c:out value="${medic.getName()}"/> <c:out value="${medic.getDose()}"/> mg,
+                                </c:forEach>
+                                </c:if> <br/>
+
+                                <c:if test="${card.getReferral() != null}">
+                                    Wystawione skierowanie: <c:out
+                                        value="${card.getReferral().getService()}"/>, Rozpoznanie: <c:out
+                                        value="${card.getReferral().getDecription()}"/>
+
+                                </c:if>
+
+
+                            </td>
+
+
+                        </tr>
+                    </c:forEach>
+                </table>
+
+            </div>
 
 
         </div>

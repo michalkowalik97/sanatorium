@@ -61,20 +61,13 @@
 
     <div class="row p-1 align-items-center">
         <div class="col-md-6">
-            <jsp:include page="layout/cards/rehabilitations.jsp"></jsp:include>
+            <jsp:include page="layout/cards/physiotherapist.jsp"></jsp:include>
         </div>
 
-        <%--  <div class="col-md-6">
-              <div class="card border-info">
-                  <div class="card-header bg-transparent border-info h3">
-                      <i class="fas fa-briefcase-medical"></i> Zarządzaj wizytami
-                  </div>
-                  <div class="card-body">
-                      <a href="/addAppointment" class="btn btn-info">Dodaj</a>
-                      <a href="/deleteAppointment" class="btn btn-info">Usuń</a>
-                  </div>
-              </div>
-          </div>--%>
+        <div class="col-md-6">
+            <%--<jsp:include page="layout/cards/rehabilitations.jsp"></jsp:include>--%>
+        </div>
+
     </div>
 
 

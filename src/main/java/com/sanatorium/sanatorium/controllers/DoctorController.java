@@ -27,7 +27,6 @@ public class DoctorController {
     @Autowired
     UserRepo userRepo;
 
-
     @Autowired
     PermissionRepo permRepo;
 

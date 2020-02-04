@@ -1,7 +1,11 @@
 package com.sanatorium.sanatorium.helpers;
 
+import com.sanatorium.sanatorium.models.PatientCard;
+import com.sanatorium.sanatorium.models.Rehabilitation;
 import com.sanatorium.sanatorium.models.User;
 import com.sanatorium.sanatorium.models.Visit;
+import com.sanatorium.sanatorium.repo.PatientCardRepo;
+import com.sanatorium.sanatorium.repo.RehabilitationRepo;
 import com.sanatorium.sanatorium.repo.UserRepo;
 import com.sanatorium.sanatorium.repo.VisitRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,19 +21,15 @@ public class PermissionResolwer {
 
     UserRepo repo;
     VisitRepo visitRepo;
+    PatientCardRepo patientCardRepo;
+    //RehabilitationRepo rehabilitationRepo;
 
     @Autowired
-    public PermissionResolwer(UserRepo repo, VisitRepo visitRepo) {
+    public PermissionResolwer(UserRepo repo, VisitRepo visitRepo, PatientCardRepo patientCardRepo) {
         this.repo = repo;
         this.visitRepo = visitRepo;
+        this.patientCardRepo = patientCardRepo;
     }
-/*
-
-    @Autowired
-    public PermissionResolwer(UserRepo repo) {
-        this.repo = repo;
-    }
-*/
 
     /**
      * Metoda zwracająca odpowiednią stronę domową dla użytkownika
@@ -59,7 +59,22 @@ public class PermissionResolwer {
                 mav.addObject("visits", visits);
                 mav.setViewName("doctor/home");
                 return mav;
+            }/*else if (user.getPermission().getLevel() == 4) { //lekarz
+                Date date = new Date();
+                List<Rehabilitation> rehabilitations =rehabilitationRepo.findTop10DoctorOrderByDateTimeAsc(user);
 
+                mav.addObject("rehabilitations", rehabilitations);
+                mav.setViewName("physiotherapist/home");
+                return mav;
+            }*/else if (user.getPermission().getLevel() == 5) { //pacjent
+                Date date = new Date();
+                List<Visit> visits = visitRepo.findByActiveAndPatientOrderByDateTimeAsc(true, user);
+                List<PatientCard> cards = patientCardRepo.findPatientCardsByPatientOrderByIdDesc(user);
+
+                mav.addObject("cards", cards);
+                mav.addObject("visits", visits);
+                mav.setViewName("patient/home");
+                return mav;
             }
         }
         mav.setViewName("index");

@@ -25,14 +25,10 @@ public class Rehabilitation {
     @Temporal(TemporalType.DATE)
     private Date fromDate;
 
-    @Temporal(TemporalType.TIME)
-    private Date fromTime;
 
     @Temporal(TemporalType.DATE)
     private Date toDate;
 
-    @Temporal(TemporalType.TIME)
-    private Date toTime;
 
     @OneToOne
     private User patient;
@@ -67,28 +63,12 @@ public class Rehabilitation {
         this.fromDate = fromDate;
     }
 
-    public Date getFromTime() {
-        return fromTime;
-    }
-
-    public void setFromTime(Date fromTime) {
-        this.fromTime = fromTime;
-    }
-
     public Date getToDate() {
         return toDate;
     }
 
     public void setToDate(Date toDate) {
         this.toDate = toDate;
-    }
-
-    public Date getToTime() {
-        return toTime;
-    }
-
-    public void setToTime(Date toTime) {
-        this.toTime = toTime;
     }
 
     public User getPatient() {
