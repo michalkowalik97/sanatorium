@@ -54,10 +54,10 @@
             <ul class="list-group list-group-flush">
                 <li class="list-group-item list-group-item-action"><a href="/user/edit/password/${user.getId()}"
                                                                       class="link100">Zmień hasło</a></li>
-                <li class="list-group-item list-group-item-action">Dapibus ac facilisis in</li>
+            <%--    <li class="list-group-item list-group-item-action">Dapibus ac facilisis in</li>
                 <li class="list-group-item list-group-item-action">Morbi leo risus</li>
                 <li class="list-group-item list-group-item-action">Porta ac consectetur ac</li>
-                <li class="list-group-item list-group-item-action">Vestibulum at eros</li>
+                <li class="list-group-item list-group-item-action">Vestibulum at eros</li>--%>
             </ul>
 
 
