@@ -5,6 +5,7 @@ import com.sanatorium.sanatorium.helpers.UpdateHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -22,7 +23,8 @@ public class HomeController {
      * @return plik JSP zawierający odpowiedną stronę
      */
     @RequestMapping("/")
-    public String homePage(HttpServletRequest req){
+    public ModelAndView homePage(HttpServletRequest req){
+        ModelAndView mav = new ModelAndView();
 
         if (req.getSession().getAttribute("user") != "" ){
             updateHelper.refreshTurnuses();
@@ -30,7 +32,8 @@ public class HomeController {
         }else {
             req.getSession().setAttribute("user","");
         }
+        mav. setViewName("index");
 
-        return "index";
+        return mav;
     }
 }

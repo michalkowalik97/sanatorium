@@ -56,7 +56,8 @@ public class LoginController {
                 req.getSession().setAttribute("user", login);
               //  req.getSession().setAttribute("perms", user.getPermId());
 
-                mav.setViewName(p.selectHome(login));
+                //mav.setViewName(p.selectHome(login));
+                mav = p.selectHome(login);
                 mav.addObject("message", "Witaj " + user.getName());
                 return mav;
 
