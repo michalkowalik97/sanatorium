@@ -14,5 +14,6 @@ public interface VisitRepo extends JpaRepository<Visit,Integer> {
     Long removeVisitById(Long id);
 
     List<Visit> findTop5ByActiveAndDoctorOrderByDateTimeAsc(boolean active, User doctor);
+    List<Visit> findTop10ByActiveAndDoctorOrderByDateTimeAsc(boolean active, User doctor);
    // List<Visit> findVisitByActive(boolean active, Date date);
 }

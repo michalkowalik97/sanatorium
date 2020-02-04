@@ -93,6 +93,14 @@ public class VisitController {
             visit.setActive(true);
             visitRepo.save(visit);
 
+            String currUser = (String) req.getSession(false).getAttribute("user");
+
+            User user = userRepo.findUserByLogin(currUser);
+            if (user.getPermission().getName().equals("doctor")) {
+                return new ModelAndView("redirect:/", "message", "Wizyta dodana pomyślnie.");
+            }
+
+
             return new ModelAndView("redirect:/showVisits", "message", "Wizyta dodana pomyślnie.");
 
         } catch (Exception e) {
@@ -177,7 +185,14 @@ public class VisitController {
             visit.setDateTime(date);
             visitRepo.save(visit);
 
-            return new ModelAndView("redirect:/showVisits", "message", "Wizyta zaktualizowana pomyślnie.");
+                String currUser = (String) req.getSession(false).getAttribute("user");
+
+                User user = userRepo.findUserByLogin(currUser);
+                if (user.getPermission().getName().equals("doctor")) {
+                    return new ModelAndView("redirect:/", "message", "Wizyta zaktualizowana pomyślnie.");
+                }
+
+                return new ModelAndView("redirect:/showVisits", "message", "Wizyta zaktualizowana pomyślnie.");
 
         } catch (Exception e) {
             return new ModelAndView("redirect:" + referer, "error", "Nie udało się zaktualizować wizyty!");

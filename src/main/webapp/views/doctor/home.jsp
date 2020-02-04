@@ -49,7 +49,10 @@
 <div class="p-5">
     <div class="row p-1 align-items-center">
         <div class="col-md-4" >
-            <div class="h3 my-2"> Najbliższe wizyty</div>
+            <div class="h3 my-2">
+                Najbliższe wizyty
+                <a href="/addVisit" class="btn-info btn float-right"> + Dodaj wizytę</a>
+            </div>
             <div style=" height: 400px; overflow-y: scroll;">
                 <table class="table table-hover table-bordered">
                     <thead>
@@ -96,10 +99,12 @@
                 </table>
 
             </div>
+<%--
 
             <div class="my-3">
                 <jsp:include page="../layout/cards/visits.jsp"></jsp:include>
             </div>
+--%>
 
 
         </div>

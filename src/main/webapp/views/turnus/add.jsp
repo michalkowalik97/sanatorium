@@ -24,8 +24,6 @@
         $(document).ready(function () {
             $('div.new-patient').on("click", function (e) {
 
-                var checkbox = $(this).closest("checkbox").val();
-
                 if ($("#check_patient").is(":checked")) {
                     $('.new-patient-form').removeClass("d-none");
                     $('.exist-patient-select').addClass("d-none");

@@ -54,7 +54,7 @@ public class PermissionResolwer {
 
             }else if (user.getPermission().getLevel() == 3) { //lekarz
                 Date date = new Date();
-                List<Visit> visits = visitRepo.findTop5ByActiveAndDoctorOrderByDateTimeAsc(true, user);
+                List<Visit> visits = visitRepo.findTop10ByActiveAndDoctorOrderByDateTimeAsc(true, user);
                 //List<Visit> visits = visitRepo.findAll(Sort.by(Sort.Direction.ASC,"id"));
                 mav.addObject("visits", visits);
                 mav.setViewName("doctor/home");

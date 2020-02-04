@@ -1,10 +1,12 @@
 package com.sanatorium.sanatorium.controllers;
 
+import com.sanatorium.sanatorium.models.Medicament;
+import com.sanatorium.sanatorium.models.PatientCard;
 import com.sanatorium.sanatorium.models.User;
-import com.sanatorium.sanatorium.repo.PermissionRepo;
-import com.sanatorium.sanatorium.repo.UserRepo;
-import com.sanatorium.sanatorium.repo.VisitRepo;
+import com.sanatorium.sanatorium.models.Visit;
+import com.sanatorium.sanatorium.repo.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,11 +33,13 @@ public class DoctorController {
     @Autowired
     PermissionRepo permRepo;
 
-    /**
-     * Metoda zwracająca widok z listą wszystkich lekarzy w bazie
-     * @param req zapytanie HTTP
-     * @return obiekt ModelAndView z odpowiedzią
-     */
+    @Autowired
+    PatientCardRepo patientCard;
+
+    @Autowired
+    MedicammentRepo medRepo;
+
+
     @RequestMapping("/showDoctors")
     public ModelAndView showAll(HttpServletRequest req) {
         ModelAndView mav = new ModelAndView();
@@ -155,4 +159,27 @@ public class DoctorController {
         return new ModelAndView("redirect:/showDoctors", "message", "Lekarz usunięty pomyślnie");
 
     }
+
+
+
+    @RequestMapping("/startVisit/{id}")
+    public ModelAndView deleteDoctor(@PathVariable("id") Long id,HttpServletRequest req){
+        ModelAndView mav = new ModelAndView();
+
+        Visit visit = visitRepo.findVisitById(id);
+
+        if (visit != null) {
+            List<PatientCard> cards = patientCard.findPatientCardsByPatientOrderByIdDesc(visit.getPatient());
+            List<Medicament> medicaments = medRepo.findAll(Sort.by(Sort.Direction.ASC, "name"));
+
+            mav.addObject("visit", visit);
+            mav.addObject("cards", cards);
+            mav.addObject("medicaments", medicaments);
+            mav.setViewName("doctor/visit");
+
+            return mav;
+        }
+        return mav;
+    }
+
 }
